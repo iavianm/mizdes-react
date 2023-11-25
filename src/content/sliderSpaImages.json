@@ -1,0 +1,24 @@
+{
+  "spa": [
+    {
+      "id": 1,
+      "src": "/images/spa-image.png",
+      "alt": "Image 1"
+    },
+    {
+      "id": 2,
+      "src": "/images/spa-image2.png",
+      "alt": "Image 2 "
+    },
+    {
+      "id": 3,
+      "src": "/images/spa-image3.png",
+      "alt": "Image 3"
+    },
+    {
+      "id": 4,
+      "src": "/images/floating.png",
+      "alt": "Image 4"
+    }
+  ]
+}

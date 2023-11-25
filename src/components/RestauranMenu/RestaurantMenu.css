@@ -1,0 +1,160 @@
+.menu {
+  max-width: 1280px;
+  width: calc(100% - 2 * 70px);
+  margin: 50px auto 150px;
+}
+
+.menu__container {
+  display: grid;
+  grid-template-areas:
+    "content options"
+    "links options";
+}
+
+.menu__title {
+  font-size: 70px;
+  font-weight: 700;
+  margin: 100px 0;
+}
+
+.menu__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  padding-right: 4.5rem;
+  grid-area: content;
+}
+
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  grid-area: links;
+}
+
+.menu__text {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.menu__text:last-of-type {
+  padding-bottom: 7em;
+}
+
+.menu__options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-area: options;
+}
+
+.menu__option {
+  color: #d38c20;
+  border: 3px solid #d38c20;
+  border-radius: 5px;
+  padding: 25px 10px;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.menu__link {
+  color: #90621b;
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 10px;
+  transition: transform 0.3 ease-in-out;
+  width: fit-content;
+}
+
+.menu__link:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.menu__link:last-of-type {
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 1140px) {
+  .menu {
+    width: calc(100% - 2 * 40px);
+  }
+
+  .menu__title {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 50px 0;
+  }
+
+  .menu__option {
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  .menu__link {
+    font-size: 16px;
+  }
+
+  .menu__text {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    display: grid;
+    justify-items: center;
+  }
+
+  .menu__container {
+    grid-template-areas:
+      "content "
+      "options"
+      "links";
+  }
+
+  .menu__content {
+    padding-right: 0;
+  }
+
+  .menu__links {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu__options {
+    padding-bottom: 30px;
+  }
+
+  .menu__text:last-of-type {
+    padding-bottom: 1.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu {
+    width: calc(100% - 2 * 20px);
+  }
+
+  .menu__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 50px 0;
+  }
+
+  .menu__option {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .menu__link {
+    font-size: 12px;
+  }
+
+  .menu__text {
+    font-size: 14px;
+  }
+}

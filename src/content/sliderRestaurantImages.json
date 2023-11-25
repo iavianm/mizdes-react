@@ -1,0 +1,19 @@
+{
+  "restaurant": [
+    {
+      "id": 1,
+      "src": "/images/restaurant.png",
+      "alt": "Image 1"
+    },
+    {
+      "id": 2,
+      "src": "/images/rest.png",
+      "alt": "Image 2 "
+    },
+    {
+      "id": 3,
+      "src": "/images/slider-brige.png",
+      "alt": "Image 3"
+    }
+  ]
+}

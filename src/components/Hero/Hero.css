@@ -1,0 +1,146 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-size: contain;
+  height: 70vh;
+  background: #000 url("../../../public/images/hero.png") no-repeat center;
+}
+
+.hero-content {
+  max-width: 1280px;
+  width: calc(100% - 2 * 70px);
+  margin: 0 auto;
+  color: white;
+}
+
+.hero-content h3,
+.hero-content h1,
+.hero-content p {
+  max-width: 900px;
+}
+
+.hero__features {
+  list-style: none;
+  padding: 0 0 50px 0;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.hero__features_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-primary {
+  background-color: #d38c20;
+  background-size: 200% 200%;
+  border-color: transparent;
+  border-style: solid;
+  color: #fff;
+  text-decoration: none;
+  padding: 20px 40px;
+  border-radius: 6px;
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #d38c20;
+  background-size: 200% 200%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
+  background-color: #f1a129;
+  color: #fff;
+}
+
+.hero__ftitle {
+  margin: 0;
+  padding: 0 0 40px 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.hero__title {
+  margin: 0;
+  padding: 0 0 20px 0;
+  font-size: 72px;
+  line-height: 68px;
+}
+
+.hero__description {
+  margin: 0;
+  padding: 0 0 80px 0;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1140px) {
+  .hero-content h3,
+  .hero-content h1,
+  .hero-content p {
+    text-align: center;
+  }
+
+  .hero__title {
+    margin: 0;
+    padding: 0 0 20px 0;
+    font-size: 32px;
+    line-height: 30px;
+  }
+
+  .btn-primary {
+    padding: 15px 30px;
+    font-size: 24px;
+  }
+
+  .hero__description {
+    padding: 0 0 60px 0;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+.hero-content {
+  width: calc(100% - 2 * 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+  .hero__ftitle {
+    padding: 0 0 5px 0;
+    font-size: 16px;
+    line-height: 32px;
+    opacity: .7;
+  }
+
+  .hero__title {
+    padding: 0 0 20px 0;
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .hero__description {
+    padding: 0 0 40px 0;
+    font-size: 14px;
+  }
+
+  .hero__features_item {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+}

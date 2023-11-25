@@ -1,0 +1,64 @@
+.premiumVilla {
+  max-width: 1280px;
+  width: calc(100% - 2 * 70px);
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 7rem; /* Добавляем отступ между карточками */
+}
+
+/*.premiumVilla:hover {*/
+/*  transform: translateY(-5px);*/
+/*}*/
+
+.premiumVilla__imageWrapper {
+  position: relative;
+  height: 600px; /* Высота изображения */
+}
+
+.premiumVilla__info {
+  padding: 16px;
+  background-color: #fff; /* Фоновый цвет для текстовой информации */
+}
+
+.premiumVilla__title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 25px;
+  /*color: #333; !* Цвет заголовка *!*/
+  border-bottom: 2px solid black;
+}
+
+.premiumVilla__description {
+  font-size: 1.1rem;
+  margin: 20px 0 ;
+  color: #000000; /* Цвет описания */
+}
+
+.premiumVilla__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.premiumVilla__area,
+.premiumVilla__rooms {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .premiumVilla {
+    width: calc(100% - 2 * 40px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .premiumVilla {
+    width: calc(100% - 2 * 20px);
+  }
+}

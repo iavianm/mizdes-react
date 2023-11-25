@@ -1,0 +1,11 @@
+.slider__restaurant {
+  background-color: #1b0c42;
+  margin-bottom: -10px;
+  overflow: hidden;
+}
+
+.slider__restaurant-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}

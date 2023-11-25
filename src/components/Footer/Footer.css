@@ -1,0 +1,173 @@
+.footer {
+  background-color: #1b0c42; /* или цвет фона, который совпадает с вашим дизайном */
+  color: #ffffff;
+  padding: 70px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 300px;
+  position: relative;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px; /* Расстояние между элементами навигации */
+}
+
+.footer-nav li {
+  padding: 0;
+}
+
+.footer__logo {
+  filter: brightness(0) invert(1);
+  max-width: 280px;
+  width: 100%;
+}
+
+.logo-link {
+  margin-top: 30px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 28px;
+  display: inline-block;
+}
+
+.footer-nav a:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.footer-contact {
+  font-size: 20px;
+  font-weight: normal;
+  text-align: right;
+}
+
+.footer-address-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 40px 0 80px;
+}
+
+.footer-contact address,
+.footer-copy {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+}
+
+.footer-contact a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-copy {
+  text-align: right;
+}
+
+.footer-about {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-address-text {
+  padding: 0;
+  margin: 0;
+  line-height: 36px;
+}
+
+.footer-section {
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .footer-address-text {
+    line-height: 28px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-contact,
+  .footer-copy {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-nav a {
+    font-size: 14px;
+  }
+
+  .footer-nav {
+    gap: 15px;
+  }
+
+  .footer-address-text {
+    line-height: 20px;
+    font-size: 12px;
+  }
+
+  .footer-copy {
+    margin-top: 100px;
+    line-height: 14px;
+    font-size: 10px;
+  }
+
+  .logo-link {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    right: 30%;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-copy {
+    margin-top: 40px;
+  }
+
+  .logo-link {
+    top: 50%;
+  }
+}

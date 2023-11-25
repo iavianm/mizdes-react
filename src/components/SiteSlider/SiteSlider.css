@@ -1,0 +1,109 @@
+.slider__content {
+  text-align: center;
+  margin-bottom: 30px;
+  max-width: 1280px;
+  width: calc(100% - 2 * 70px);
+  margin: 0 auto;
+}
+
+.slider__header {
+  font-size: 42px;
+  margin: 50px 0;
+}
+
+.slider__img {
+  display: flex;
+  margin: 0 auto;
+  height: 60vh;
+  width: 97%;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+/*.slider__img:hover {*/
+/*  transform: scale(1.05);*/
+/*}*/
+
+/*.slider__img-container:hover {*/
+/*  transform: scale(1.07);*/
+/*}*/
+
+.slider__container {
+  margin: 0 auto;
+  width: 100%;
+  height: 80vh;
+  border-color: white;
+}
+
+.slider__title {
+  margin-left: 50px;
+  width: 70%;
+  font-size: 30px;
+  padding: 20px;
+  border-radius: 5px;
+}
+.slider__description {
+  position: absolute; /* Абсолютное позиционирование для описания */
+  bottom: 0; /* Расположение в нижней части изображения */
+  left: 0; /* Расположение слева от края изображения */
+  width: 100%; /* Ширина описания равна ширине изображения */
+  /*background-color: rgba(*/
+  /*  0,*/
+  /*  0,*/
+  /*  0,*/
+  /*  0.5*/
+  /*); !* Полупрозрачный фон для читаемости текста *!*/
+  color: #fff; /* Цвет текста */
+  padding: 20px 50px; /* Отступы внутри блока описания */
+  box-sizing: border-box; /* Включаем padding в общую ширину */
+  border-radius: 0 0 10px 10px; /* Скругление углов снизу, чтобы соответствовать изображению */
+  font-size: 16px; /* Размер шрифта для описания */
+  margin: 0;
+}
+
+.slick-slide {
+  position: relative;
+}
+
+/*.slick-slide:hover {*/
+/*  transform: scale(1.05);*/
+/*}*/
+
+.slick-slide,
+.slick-slide * {
+  outline: none !important;
+}
+
+.slick-arrow {
+  outline: none !important;
+}
+
+.img:focus {
+  outline: none !important;
+}
+
+.slider__button {
+  margin-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .slider__content {
+    width: calc(100% - 2 * 40px);
+  }
+
+  .slider__header {
+    font-size: 36px;
+    margin: 30px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slider__content {
+    width: calc(100% - 2 * 20px);
+  }
+
+  .slider__header {
+    font-size: 28px;
+    margin: 25px 0;
+  }
+}

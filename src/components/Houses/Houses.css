@@ -1,0 +1,132 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px; /* Адаптируйте под ваш макет */
+  margin: 50px auto; /* Центрирование контейнера */
+  gap: 20px; /* Отступы между элементами */
+  border-bottom: #d38c20 1px solid;
+}
+
+.villa-info {
+  flex: 3; /* Занимает 3 части из 5 */
+  padding: 20px;
+}
+
+.villa-title {
+  font-size: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.villa-specs {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2em;
+}
+
+.villa-description {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+}
+
+.villa-tags span {
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  margin: 5px 5px 5px 0;
+  border-radius: 5px;
+}
+
+.villa-text {
+  margin: 0;
+  padding: 0 0 20px 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/*.villa-text:last-child {*/
+/*  padding-bottom: 0;*/
+/*}*/
+
+.button-book,
+.button-tour {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  background-color: #d38c20;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: #d38c20 solid 2px;
+}
+
+.button-book:hover {
+  transform: scale(1.03);
+}
+
+.villa-tags-items:hover {
+  transform: scale(1.01);
+}
+
+.button-tour {
+  background-color: #fff;
+  color: #d38c20;
+}
+
+.villa-image {
+  position: relative;
+  width: 45%;
+}
+
+.villa-image img {
+  border-radius: 10px;
+}
+
+.villa-info-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 10px;
+}
+
+.villa-description-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.villa-tags {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.villa-tags span {
+  color: #d38c20;
+  background-color: #fff;
+  border-radius: 10px;
+  border: #d38c20 1px solid;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.villa-info-size {
+  width: 50%;
+  margin-bottom: 50px;
+}
+
+.villa-description-about {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}

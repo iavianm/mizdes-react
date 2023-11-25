@@ -1,0 +1,69 @@
+.leisureBlock {
+  width: calc(100% - 2 * 70px);
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0 50px;
+}
+
+.leisureBlock h2 {
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  color: #000000;
+}
+
+.featuresList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  row-gap: 15px;
+}
+
+.feature {
+  flex: 0 1 calc(33.333% - 20px); /* Для двух карточек в ряд на широких экранах */
+  margin: 5px; /* Добавьте небольшой отступ */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Опционально, для тени вокруг карточек */
+  border-radius: 4px; /* Опционально, для скругленных углов */
+  overflow: hidden; /* Для поддержания скругленных углов изображения */
+}
+
+.feature h3 {
+  margin: 10px 0;
+  color: #000;
+  font-size: 1.2em;
+}
+
+.feature p {
+  margin: 5px 0;
+  color: #000000;
+  font-size: 1em;
+}
+
+@media (max-width: 800px) {
+  .feature {
+    flex: 0 1 calc(50% - 10px); /* Для одной карточки в ряд на узких экранах */
+  }
+}
+
+@media (max-width: 600px) {
+  .feature {
+    flex: 0 1 calc(100% - 10px); /* Для одной карточки в ряд на узких экранах */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .leisureBlock {
+    width: calc(100% - 2 * 40px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .leisureBlock {
+    width: calc(100% - 2 * 20px);
+  }
+}

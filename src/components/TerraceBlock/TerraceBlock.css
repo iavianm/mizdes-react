@@ -1,0 +1,43 @@
+/* styles.css */
+.terrace-block {
+  min-height: 550px;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/images/terrace.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  color: #fff; /* Белый цвет текста */
+  text-align: center;
+  padding: 50px; /* Подстраивайте отступы по вашему дизайну */
+  display: flex;
+  justify-content: center;
+}
+
+.terrace-container {
+  max-width: 60%;
+}
+
+.terrace-title {
+  font-size: 2em; /* Размер шрифта для заголовка */
+  margin-bottom: 70px; /* Отступ под заголовком */
+}
+
+.terrace-description {
+  font-size: 1em; /* Размер шрифта для описания */
+  margin-bottom: 200px; /* Отступ под описанием */
+}
+
+.book-button {
+  background-color: #ffa500; /* Оранжевый цвет фона кнопки */
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px; /* Скругление углов кнопки */
+}
+
+.book-button:hover {
+  background-color: #cc8400; /* Темный оттенок оранжевого для эффекта при наведении */
+}

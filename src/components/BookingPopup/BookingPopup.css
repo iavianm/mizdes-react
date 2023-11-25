@@ -1,0 +1,246 @@
+/* Оверлей */
+.booking-popup-overlay {
+  display: none; /* Показать или скрыть в зависимости от состояния */
+  position: fixed;
+  z-index: 1000; /* Убедитесь, что оверлей ниже модального окна */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Затемнение фона */
+}
+
+/*.form-group-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+
+/* Главный контейнер попапа */
+.booking-popup {
+  display: none; /* Показать или скрыть в зависимости от состояния */
+  position: fixed;
+  z-index: 1001; /* Поднять над оверлеем */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Фиксированная ширина попапа */
+  /*max-width: 90%; !* Адаптация к ширине экрана *!*/
+  background: white;
+  padding: 20px;
+  border-radius: 10px; /* Скругление углов */
+}
+
+.active {
+  display: block;
+}
+
+/* Содержимое попапа */
+.booking-popup-content {
+  /* Удалите margin, если он не нужен, так как вы уже центрировали .booking-popup */
+}
+
+/* Кнопка закрытия */
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  font-size: 48px;
+  cursor: pointer;
+}
+
+/* Группа формы */
+.form-group {
+  margin-bottom: 20px; /* Отступ между полями формы */
+}
+
+/* Управление полями ввода */
+.form-control {
+  width: 100%; /* Изменено с 80% на 100% */
+  padding: 15px; /* Увеличьте паддинг для большего пространства */
+  margin-bottom: 10px; /* Отступ снизу */
+  border: 1px solid #ccc; /* Граница поля */
+  border-radius: 4px; /* Скругление углов поля */
+  background: #fff;
+  font-size: 18px;
+}
+
+/* Стили для полей даты (если они используются в JSX) */
+.form-control-date {
+  /* Те же стили, что и для .form-control */
+}
+
+/* Обертка для полей даты */
+.form-group-date {
+  max-height: 60px;
+  /* Подстройте в соответствии с вашими нуждами */
+  margin-bottom: 20px; /* Отступ между полями даты */
+}
+
+/* Кнопка отправки */
+.submit-button {
+  background-color: #ffa500; /* Измените цвет на желаемый оранжевый */
+  color: white;
+  padding: 16px 20px; /* Увеличьте паддинг для более высокой кнопки */
+  margin-top: 15px; /* Отступ сверху */
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px; /* Скругление углов кнопки */
+}
+
+.submit-button:hover {
+  background-color: #cc8400; /* Темный оттенок оранжевого для эффекта при наведении */
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-minus,
+.quantity-plus {
+  background-color: #ddd;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.quantity-input {
+  width: 50px; /* Задать фиксированный размер для инпута */
+  text-align: center;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+}
+
+/* Для коррекции ширины и отступов полей ввода, которые выходят за границы */
+.form-control {
+  /*width: calc(100% - 30px); !* Уменьшаем ширину на размер padding *!*/
+  box-sizing: border-box; /* Учитываем padding и border в ширине элемента */
+  -webkit-appearance: none; /* Убирает стандартный стрелочный индикатор в WebKit-браузерах */
+  -moz-appearance: none; /* Убирает стандартный стрелочный индикатор в Firefox */
+  appearance: none; /* Убирает стандартный стрелочный индикатор для будущей поддержки */
+  /*background-image: url('путь_к_вашей_стрелке.svg'); !* Иконка стрелки для select *!*/
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Позиция иконки стрелки */
+  background-size: 12px; /* Размер иконки стрелки */
+}
+
+/* Убедитесь, что .form-group имеет достаточный размер, чтобы содержать .form-control */
+.form-group {
+  width: 100%; /* Задать 100% ширины относительно родителя */
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.form-group-option {
+}
+
+.quantity-selector {
+  display: flex;
+  flex-direction: column; /* Элементы теперь выстроены вертикально */
+  align-items: start; /* Выравнивание по центру */
+}
+
+.quantity-label {
+  margin-bottom: 5px; /* Добавим немного отступа между меткой и контролами */
+  font-weight: bold; /* Сделаем текст жирным */
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center; /* Выравнивание кнопок по центру */
+}
+
+.quantity-minus,
+.quantity-plus {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  color: #333;
+  width: 40px;
+  padding: 10px 15px; /* Увеличиваем паддинг для большего размера кнопок */
+  font-size: 16px; /* Увеличиваем шрифт в кнопках */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Добавляем плавность перехода */
+}
+
+.quantity-minus:hover,
+.quantity-plus:hover {
+  background-color: #bbb; /* Цвет при наведении */
+}
+
+.quantity-input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin: 0 10px; /* Увеличиваем отступ между кнопками и инпутом */
+}
+
+/* Дополнительные стили для улучшения внешнего вида */
+.quantity-minus,
+.quantity-plus,
+.quantity-input {
+  border-radius: 4px; /* Добавляем скругление углов */
+}
+
+.form-control option {
+  padding: 5px; /* Добавляет отступы для каждой опции */
+  background-color: #f5f5f5; /* Цвет фона для опций */
+  color: #333; /* Цвет текста опций */
+  font-size: 18px;
+}
+
+.booking-popup-about {
+  padding: 0;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0 0 20px;
+  /*font-family: "Roboto Light", serif;*/
+}
+
+.form-group-option-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.booking-popup-title {
+  padding: 0;
+  font-size: 36px;
+  line-height: 42px;
+  color: #d38c20;
+  margin: 0 0 20px;
+}
+
+/* Адаптация к мобильным устройствам */
+@media screen and (max-width: 768px) {
+  .booking-popup {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .form-control,
+  .form-control-date {
+    padding: 10px;
+  }
+
+  .submit-button {
+    padding: 12px 15px;
+  }
+
+  .booking-popup-about {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .booking-popup-about {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .booking-popup-title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
