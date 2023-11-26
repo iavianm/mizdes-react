@@ -26,7 +26,7 @@ export default function RestaurantPage({ handleTogglePopup }) {
     <section className="restaurant">
       <Hero
         content={heroContent.restauranPage}
-        // handleTogglePopup={handleTogglePopup}
+        handleTogglePopup={handleTogglePopup}
       />
       <RestaurantMenu />
       <div className="slider__restaurant">

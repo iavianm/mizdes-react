@@ -11,7 +11,7 @@ import titles from "../../content/villasSectionTitles.json";
 import sliderSpaImages from "../../content/sliderSpaImages.json";
 import { useEffect } from "react";
 
-const SpaPage = () => {
+const SpaPage = ({ handleTogglePopup }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -29,7 +29,10 @@ const SpaPage = () => {
 
   return (
     <section className="main">
-      <Hero content={heroContent.spaPage} />
+      <Hero
+        content={heroContent.spaPage}
+        handleTogglePopup={handleTogglePopup}
+      />
       <div className="villas-spa__section">
         <VillasSection
           villas={villas.villas}

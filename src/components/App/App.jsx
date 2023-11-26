@@ -20,7 +20,10 @@ export default function App() {
       <Header handleTogglePopup={handleTogglePopup} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/spa" element={<SpaPage />} />
+        <Route
+          path="/spa"
+          element={<SpaPage handleTogglePopup={handleTogglePopup} />}
+        />
         <Route
           path="/houses"
           element={<HousesPage handleTogglePopup={handleTogglePopup} />}
