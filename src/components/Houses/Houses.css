@@ -45,6 +45,7 @@
   padding: 0 0 20px 0;
   font-size: 18px;
   line-height: 24px;
+  text-align: justify;
 }
 
 /*.villa-text:last-child {*/
@@ -64,6 +65,10 @@
 
 .button-book:hover {
   transform: scale(1.03);
+}
+
+.villa-tags-items {
+  height: 38px;
 }
 
 .villa-tags-items:hover {
@@ -129,4 +134,147 @@
 .buttons-container {
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .villa-info-size {
+    width: 80%;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .container {
+    display: block;
+    /*flex-wrap: wrap;*/
+    max-width: 800px; /* Адаптируйте под ваш макет */
+    margin: 50px auto; /* Центрирование контейнера */
+    gap: 20px; /* Отступы между элементами */
+    border-bottom: #d38c20 1px solid;
+  }
+
+  .villa-description-container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .villa-description-about {
+    width: 80%;
+  }
+
+  .villa-tags {
+    display: flex;
+    /*justify-content: space-between;*/
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    width: 80%;
+  }
+
+  .villa-info {
+    flex: none; /* Занимает 3 части из 5 */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .villa-info-size {
+    width: 80%;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .villa-image {
+    position: relative;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .villa-image img {
+    /*display: flex;*/
+    /*margin: 0 auto;*/
+    /*height: 60vh;*/
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .villa-tags span {
+    padding: 3px;
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .villa-info-size {
+    /*width: 80%;*/
+    margin-bottom: 20px;
+  }
+
+  .villa-info-container {
+    display: block;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 10px;
+  }
+
+  .villa-specs {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    margin-top: 20px;
+  }
+
+  .villa-title {
+    font-size: 2rem;
+  }
+
+  .villa-description {
+    font-size: 12px;
+    line-height: normal;
+  }
+
+  .villa-tags-items {
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .villa-text {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .villa-tags {
+    margin-bottom: 20px;
+  }
+
+  .villa-tags span {
+    padding: 3px;
+    /*width: 120px;*/
+  }
+}
+
+@media screen and (max-width: 465px) {
+  .villa-tags-items {
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .villa-tags span {
+    padding: 3px;
+    width: 40%;
+  }
+
+  /*.button-book,*/
+  /*.button-tour {*/
+  /*  padding: 7px 14px;*/
+  /*  margin: 10px 5px;*/
+  /*  font-size: 12px;*/
+  /*}*/
+
+  .buttons-container {
+    flex-direction: column;
+  }
 }
