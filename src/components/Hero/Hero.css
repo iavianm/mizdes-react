@@ -92,8 +92,8 @@
   .hero__title {
     margin: 0;
     padding: 0 0 20px 0;
-    font-size: 32px;
-    line-height: 30px;
+    font-size: 48px;
+    line-height: 52px;
   }
 
   .btn-primary {
@@ -171,7 +171,7 @@
   }
 
   .hero__features_item {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .btn-primary {
