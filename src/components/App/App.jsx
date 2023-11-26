@@ -25,7 +25,10 @@ export default function App() {
           path="/houses"
           element={<HousesPage handleTogglePopup={handleTogglePopup} />}
         />
-        <Route path="/restaurant" element={<RestaurantPage />} />
+        <Route
+          path="/restaurant"
+          element={<RestaurantPage handleTogglePopup={handleTogglePopup} />}
+        />
         <Route path="/contacts" element={<ContactsPage />} />
       </Routes>
       <Footer />

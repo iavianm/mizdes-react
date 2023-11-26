@@ -9,7 +9,7 @@
       "Вертолетная площадка"
     ],
     "buttonText": "Все коттеджи",
-    "buttonLink": "#",
+    "buttonLink": "/houses",
     "featureIconSrc": "/images/teenyicons_tick-circ.svg"
   },
   "housesPage": {

@@ -1,11 +1,10 @@
-"use client";
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SiteSlider.css";
+import { Link } from "react-router-dom";
 
-const SiteSlider = ({ title, images }) => {
+const SiteSlider = ({ title, images, link }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -54,9 +53,9 @@ const SiteSlider = ({ title, images }) => {
           ))}
         </Slider>
         <div className={"slider__button"}>
-          <a href="#" className="btn btn-primary">
+          <Link to={link} className="btn btn-primary">
             Подробнее
-          </a>
+          </Link>
         </div>
       </div>
     </div>

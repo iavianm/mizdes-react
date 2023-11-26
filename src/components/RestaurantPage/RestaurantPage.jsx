@@ -4,8 +4,13 @@ import RestaurantMenu from "../RestauranMenu/RestaurantMenu.jsx";
 import Slider from "react-slick";
 import { restaurant } from "../../content/sliderRestaurantImages.json";
 import heroContent from "../../content/heroContent.json";
+import { useEffect } from "react";
 
-export default function RestaurantPage() {
+export default function RestaurantPage({ handleTogglePopup }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const customSliderSettings = {
     dots: true,
     infinite: true,
@@ -19,7 +24,10 @@ export default function RestaurantPage() {
 
   return (
     <section className="restaurant">
-      <Hero content={heroContent.restauranPage} />
+      <Hero
+        content={heroContent.restauranPage}
+        // handleTogglePopup={handleTogglePopup}
+      />
       <RestaurantMenu />
       <div className="slider__restaurant">
         <Slider {...customSliderSettings}>

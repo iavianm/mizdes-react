@@ -9,8 +9,13 @@ import heroContent from "../../content/heroContent.json";
 import villas from "../../content/villasSpa.json";
 import titles from "../../content/villasSectionTitles.json";
 import sliderSpaImages from "../../content/sliderSpaImages.json";
+import { useEffect } from "react";
 
 const SpaPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const customSliderSettings = {
     dots: true,
     infinite: true,

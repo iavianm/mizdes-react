@@ -1,6 +1,7 @@
 import "./Hero.css";
+import { Link } from "react-router-dom";
 
-function Hero({ content = {} }) {
+function Hero({ content = {}, handleTogglePopup }) {
   const {
     title,
     subtitle,
@@ -25,9 +26,14 @@ function Hero({ content = {} }) {
             </li>
           ))}
         </ul>
-        <a href={buttonLink} className="btn btn-primary">
+        <Link
+          to={buttonLink}
+          onClick={handleTogglePopup}
+          className="btn btn-primary"
+          type={"button"}
+        >
           {buttonText}
-        </a>
+        </Link>
       </div>
     </section>
   );

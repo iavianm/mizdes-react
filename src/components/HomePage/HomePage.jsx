@@ -11,8 +11,13 @@ import InteractiveMap from "../InteractiveMap/InteractiveMap.jsx";
 import LeisureBlock from "../LeisureBlock/LeisureBlock.jsx";
 import TextBlock from "../TextBlock/TextBlock.jsx";
 import { villas } from "../../content/villasMain.json";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className={"main"}>
       <Hero content={heroContent.homePage} />
@@ -22,10 +27,12 @@ export default function HomePage() {
       <SiteSlider
         title={slidersTitles.homePage.titleRes}
         images={sliderHomeImages.restaurant}
+        link={"/restaurant"}
       />
       <SiteSlider
         title={slidersTitles.homePage.titleSpa}
         images={sliderHomeImages.spa}
+        link={"/spa"}
       />
       <InteractiveMap />
       <LeisureBlock />

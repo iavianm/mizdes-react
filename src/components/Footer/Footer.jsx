@@ -10,16 +10,16 @@ const Footer = () => {
         <div className="footer-section">
           <ul className="footer-nav">
             <li>
-              <a href="#">Главная</a>
+              <Link to={"/"}>Главная</Link>
             </li>
             <li>
-              <a href="#">Номера</a>
+              <Link to={"/houses"}>Номера</Link>
             </li>
             <li>
-              <a href="#">СПА</a>
+              <Link to={"/spa"}>СПА</Link>
             </li>
             <li>
-              <a href="#">Ресторан</a>
+              <Link to={"/restaurant"}>Ресторан</Link>
             </li>
           </ul>
           <Link to="/contacts" className="logo-link">

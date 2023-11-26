@@ -7,11 +7,14 @@ const InteractiveMap = () => {
 
   return (
     <div className="mapContainer">
-      <img
-        src="/images/interactive-map.png"
-        alt="Интерактивная карта"
-        className={"interactive-map"}
-      />
+      <div className={"interactive-map-container"}>
+        <img
+          src="/images/interactive-map.png"
+          alt="Интерактивная карта"
+          className={"interactive-map"}
+        />
+      </div>
+
       {points.map((point) => (
         <div
           key={point.id}
