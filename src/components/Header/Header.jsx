@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useState, useEffect } from "react";
 
@@ -35,29 +35,29 @@ function Header({ handleTogglePopup }) {
           </Link>
           <ul className={"header__list"}>
             <li className={"header__list-items"}>
-              <Link to="/" className={"header__list-item"}>
+              <NavLink to="/" className={"header__list-item"}>
                 Главная
-              </Link>
+              </NavLink>
             </li>
             <li className={"header__list-items"}>
-              <Link to="/houses" className={"header__list-item"}>
+              <NavLink to="/houses" className={"header__list-item"}>
                 Номера
-              </Link>
+              </NavLink>
             </li>
             <li className={"header__list-items"}>
-              <Link to="/spa" className={"header__list-item"}>
+              <NavLink to="/spa" className={"header__list-item"}>
                 СПА
-              </Link>
+              </NavLink>
             </li>
             <li className={"header__list-items"}>
-              <Link to="/restaurant" className={"header__list-item"}>
+              <NavLink to="/restaurant" className={"header__list-item"}>
                 Ресторан
-              </Link>
+              </NavLink>
             </li>
             <li className={"header__list-items"}>
-              <Link to="/contacts" className={"header__list-item"}>
+              <NavLink to="/contacts" className={"header__list-item"}>
                 Контакты
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <button className={"header__button"} onClick={handleTogglePopup}>
