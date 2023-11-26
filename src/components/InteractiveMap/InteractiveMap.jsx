@@ -33,7 +33,7 @@ const InteractiveMap = () => {
               />
               <div className="tooltipText">{point.label}</div>
               <div className={"tooltip__button"}>
-                <a href="#" className="moreLink">
+                <a href={point.link} className="moreLink">
                   Подробнее
                 </a>
               </div>

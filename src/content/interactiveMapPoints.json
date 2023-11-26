@@ -5,35 +5,40 @@
       "label": "Круглогодичный видовой СПА-центр.",
       "top": "41.5%",
       "left": "35.5%",
-      "image": "/images/spa.png"
+      "image": "/images/spa.png",
+      "link": "/spa"
     },
     {
       "id": "restaurant",
       "label": "Панорамный ресторан мечты на берегу Финского залива.",
       "top": "57%",
       "left": "23.3%",
-      "image": "/images/restaurant_map.png"
+      "image": "/images/restaurant_map.png",
+      "link": "/restaurant"
     },
     {
       "id": "riviera",
       "label": "Функциональная, современная, компактная вилла для небольшой компании.",
       "top": "34%",
       "left": "60.5%",
-      "image": "/images/riviera_map.png"
+      "image": "/images/riviera_map.png",
+      "link": "/houses"
     },
     {
       "id": "villa",
       "label": "Комфортная, стильная вилла для семейного отдыха.",
       "top": "58.4%",
       "left": "61.5%",
-      "image": "/images/villa_map.png"
+      "image": "/images/villa_map.png",
+      "link": "/houses"
     },
     {
       "id": "highgarden",
       "label": "Просторная, надёжная двухэтажная вилла для тех, кто привык брать от жизни максимум.",
       "top": "61%",
       "left": "67.5%",
-      "image": "/images/highgarden_map.png"
+      "image": "/images/highgarden_map.png",
+      "link": "/houses"
     }
   ]
 }
