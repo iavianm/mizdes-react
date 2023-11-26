@@ -6,6 +6,18 @@
 
 .slider__restaurant-img {
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
   object-fit: cover;
+}
+
+@media screen and (max-width: 770px) {
+  .slider__restaurant-img {
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .slider__restaurant-img {
+    height: 30vh;
+  }
 }
