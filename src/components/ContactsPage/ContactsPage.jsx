@@ -25,8 +25,7 @@ const ContactsPage = () => {
             src="https://yandex.ru/map-widget/v1/?from=mapframe&ll=29.078449%2C60.180161&mode=usermaps&source=mapframe&um=constructor%3Ab4237b51cdc93a034c38b3234b59c27d4f45dea18bed855a6632e0489d29425e&utm_source=mapframe&z=14"
             width="100%"
             height="400"
-            frameBorder="1"
-            allowFullScreen="true"
+            allowFullScreen
           ></iframe>
         </div>
       </section>
