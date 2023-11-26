@@ -61,6 +61,12 @@
   color: #000;
 }
 
+@media screen and (max-width: 1120px) {
+  .features-section {
+    padding: 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .features-section {
     width: calc(100% - 2 * 40px);
@@ -70,5 +76,11 @@
 @media screen and (max-width: 480px) {
   .features-section {
     width: calc(100% - 2 * 20px);
+  }
+  .features-heading h2 {
+    font-size: 24px;
+  }
+  .features-heading p {
+    font-size: 14px;
   }
 }

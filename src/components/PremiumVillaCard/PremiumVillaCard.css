@@ -6,7 +6,7 @@
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  margin-bottom: 7rem; /* Добавляем отступ между карточками */
+  /*margin-bottom: 7rem; !* Добавляем отступ между карточками *!*/
 }
 
 /*.premiumVilla:hover {*/
@@ -33,7 +33,7 @@
 
 .premiumVilla__description {
   font-size: 1.1rem;
-  margin: 20px 0 ;
+  margin: 20px 0;
   color: #000000; /* Цвет описания */
 }
 
