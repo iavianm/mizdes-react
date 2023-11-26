@@ -2,7 +2,7 @@ import "./Houses.css";
 import BookingPopup from "../BookingPopup/BookingPopup.jsx";
 import { useState } from "react";
 
-const Houses = ({ house, handleTogglePopup }) => {
+const Houses = ({ house, handleTogglePopup, handleTogglePopupTour }) => {
   const { title, specs, description, tags, about, buttons, image } = house;
 
   return (
@@ -42,7 +42,7 @@ const Houses = ({ house, handleTogglePopup }) => {
                 <button className="button-book" onClick={handleTogglePopup}>
                   {buttons.book}
                 </button>
-                <button className="button-tour">{buttons.tour}</button>
+                <button className="button-tour" onClick={handleTogglePopupTour}>{buttons.tour}</button>
               </div>
             </div>
             <div className="villa-image">

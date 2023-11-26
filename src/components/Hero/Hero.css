@@ -3,9 +3,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 50px;
-  background-size: cover;
   height: 70vh;
   background: #000 url("../../../public/images/hero.png") no-repeat center;
+  background-size: 100% 100%;
 }
 
 .hero-content {
