@@ -13,6 +13,7 @@ import { login, loginWithCookie, logout } from "../../utils/api.js";
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
+import Admin from "../Admin/Admin.jsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
@@ -21,6 +22,7 @@ export default function App() {
   const navigate = useNavigate();
   const [useMessage, setUseMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({});
+  const [isTokenChecked, setIsTokenChecked] = useState(false);
   function handleTogglePopup() {
     setOpenPopup(!openPopup);
   }
@@ -58,6 +60,7 @@ export default function App() {
       .catch((e) => console.log(e))
       .finally(() => {
         setUsePreloader(false);
+        setIsTokenChecked(true);
       });
   }
 
@@ -83,50 +86,52 @@ export default function App() {
   return (
     <main className={"main"}>
       <Header handleTogglePopup={handleTogglePopup} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/spa"
-          element={<SpaPage handleTogglePopup={handleTogglePopup} />}
-        />
-        <Route
-          path="/houses"
-          element={<HousesPage handleTogglePopup={handleTogglePopup} />}
-        />
-        <Route
-          path="/restaurant"
-          element={<RestaurantPage handleTogglePopup={handleTogglePopup} />}
-        />
-        <Route path="/contacts" element={<ContactsPage />} />
-        <Route
-          path="/signin"
-          element={
-            <Login
-              handleLogin={handleLogin}
-              setLoggedIn={setLoggedIn}
-              message={useMessage}
-            />
-          }
-        />
-        {/*<Route*/}
-        {/*  path="/admin"*/}
-        {/*  element={*/}
-        {/*    <ProtectedRouteElement*/}
-        {/*      loggedIn={loggedIn}*/}
-        {/*      element={EditProfile}*/}
-        {/*      handleLogout={handleLogout}*/}
-        {/*      handleProfileSubmit={handleProfileUpdate}*/}
-        {/*    />*/}
-        {/*  }*/}
-        {/*/>*/}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {isTokenChecked ? (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/spa"
+            element={<SpaPage handleTogglePopup={handleTogglePopup} />}
+          />
+          <Route
+            path="/houses"
+            element={<HousesPage handleTogglePopup={handleTogglePopup} />}
+          />
+          <Route
+            path="/restaurant"
+            element={<RestaurantPage handleTogglePopup={handleTogglePopup} />}
+          />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/signin"
+            element={
+              <Login
+                handleLogin={handleLogin}
+                setLoggedIn={setLoggedIn}
+                message={useMessage}
+              />
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                element={Admin}
+                handleLogout={handleLogout}
+              />
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      ) : (
+        <Preloader openPreloader={usePreloader} />
+      )}
       <Footer />
       <BookingPopup
         isVisible={openPopup}
         handleTogglePopup={handleTogglePopup}
       />
-      <Preloader openPreloader={usePreloader} />
     </main>
   );
 }
