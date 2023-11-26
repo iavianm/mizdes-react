@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useState, useEffect } from "react";
 
-function Header() {
+function Header({ handleTogglePopup }) {
   const [burgerOpened, setBurgerOpened] = useState(false);
   const [windowWidth, setWindowWidth] = useState(undefined);
 
@@ -60,7 +60,9 @@ function Header() {
               </Link>
             </li>
           </ul>
-          <button className={"header__button"}>Забронировать</button>
+          <button className={"header__button"} onClick={handleTogglePopup}>
+            Забронировать
+          </button>
         </>
       ) : (
         <>

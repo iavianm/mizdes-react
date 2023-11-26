@@ -5,13 +5,22 @@ import TerraceBlock from "../TerraceBlock/TerraceBlock.jsx";
 import heroContent from "../../content/heroContent.json";
 // import TourPopup from "@/app/components/TourPopup/TourPopup";
 
-const HousesPage = () => {
+const HousesPage = ({ handleTogglePopup }) => {
   return (
     <section className={"main"}>
       <Hero content={heroContent.housesPage} />
-      <Houses house={housesContent.riviera} />
-      <Houses house={housesContent.grandis} />
-      <Houses house={housesContent.highgarden} />
+      <Houses
+        house={housesContent.riviera}
+        handleTogglePopup={handleTogglePopup}
+      />
+      <Houses
+        house={housesContent.grandis}
+        handleTogglePopup={handleTogglePopup}
+      />
+      <Houses
+        house={housesContent.highgarden}
+        handleTogglePopup={handleTogglePopup}
+      />
       <TerraceBlock />
       {/*<TourPopup />*/}
     </section>

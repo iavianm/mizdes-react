@@ -2,14 +2,8 @@ import "./Houses.css";
 import BookingPopup from "../BookingPopup/BookingPopup.jsx";
 import { useState } from "react";
 
-const Houses = ({ house }) => {
-  const [openPopup, setOpenPopup] = useState(false);
-
+const Houses = ({ house, handleTogglePopup }) => {
   const { title, specs, description, tags, about, buttons, image } = house;
-
-  function handleTogglePopup() {
-    setOpenPopup(!openPopup);
-  }
 
   return (
     <>
@@ -62,10 +56,6 @@ const Houses = ({ house }) => {
           </div>
         </div>
       </div>
-      <BookingPopup
-        isVisible={openPopup}
-        handleTogglePopup={handleTogglePopup}
-      />
     </>
   );
 };
