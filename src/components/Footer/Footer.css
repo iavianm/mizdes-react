@@ -170,4 +170,8 @@
   .logo-link {
     top: 50%;
   }
+
+  .footer-address-text {
+    font-size: 10px;
+  }
 }

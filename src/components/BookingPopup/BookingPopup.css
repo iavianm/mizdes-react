@@ -25,10 +25,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 80%; /* Фиксированная ширина попапа */
+  height: 90%;
   /*max-width: 90%; !* Адаптация к ширине экрана *!*/
   background: white;
   padding: 20px;
   border-radius: 10px; /* Скругление углов */
+  overflow: auto;
 }
 
 .active {
@@ -195,6 +197,7 @@
   font-size: 18px;
   line-height: 22px;
   margin: 0 0 20px;
+  color: #383a47;
   /*font-family: "Roboto Light", serif;*/
 }
 

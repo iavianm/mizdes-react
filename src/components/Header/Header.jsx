@@ -80,7 +80,11 @@ function Header({ handleTogglePopup }) {
               alt="кнопка меню"
             ></img>
           </button>
-          <BurgerMenu isOpen={burgerOpened} onClose={handleOpenBurger} />
+          <BurgerMenu
+            isOpen={burgerOpened}
+            onClose={handleOpenBurger}
+            handleTogglePopup={handleTogglePopup}
+          />
         </>
       )}
     </header>
