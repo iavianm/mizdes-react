@@ -46,6 +46,7 @@ const HousesPage = ({ handleTogglePopup }) => {
       <HousesPopup 
       selectedHouse={selectedHouse}
       isVisiblie={openPopup}
+      onClose={handleTogglePopupTour}
       />
     </section>
   );

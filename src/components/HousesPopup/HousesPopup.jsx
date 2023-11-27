@@ -5,15 +5,10 @@ import './HousesPopup.css';
 export default function HousesPopup({
   isVisiblie,
   selectedHouse,
-  handleTogglePopupTour,
+  onClose
 }) 
-
 {
   const { scheme, option, items, texts, quantity } = housesPopupContent.riviera;  
-
-  function onClose() {
-    handleTogglePopupTour();
-  }
 
   return (
     <div className={`popup-overlay ${isVisiblie ? "popup-open" : ""}`}>

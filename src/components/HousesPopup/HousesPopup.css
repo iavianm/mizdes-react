@@ -25,6 +25,7 @@
 .popup-block {
   width: 95vw;
   height: 95vh;
+  margin: 20px;
   background-color: #1b0c42;
   display: flex;
   position: relative;
@@ -125,13 +126,20 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .popup-container {
+    padding: 30px;
+  }
+
   .popup-overlay {
-    padding: 150px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .popup-block {
-    height: 140vh;
-    touch-action: auto;
+    top: 50px;
+    bottom: 50px;
+    height: 110%;
   }
 
   .popup-container {
@@ -142,15 +150,12 @@
   .popup-schemes {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: auto;
     flex: 1;
   }
 
   .popup-scheme {
-    max-width: 50%;
+    max-width: 40%;
     transform: rotate(90deg);
-    padding-left: 100px;
   }
 
   .popup-option {
@@ -188,6 +193,10 @@
 }
 
 @media screen and (max-width: 450px) {
+  .popup-container {
+    padding: 20px;
+  }
+
   .popup-scheme {
     max-width: 80%;
   }
