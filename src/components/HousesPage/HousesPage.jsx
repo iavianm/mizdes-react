@@ -11,11 +11,16 @@ const HousesPage = ({ handleTogglePopup }) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedHouse, setSelectedHouse] = useState(null);
 
+  function toggleBodyOverflow() {
+    const body = document.body;
+    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+  }
+
   function handleTogglePopupTour(house) {
     setSelectedHouse(house);
     setOpenPopup(!openPopup);
+    toggleBodyOverflow();
   }
-
 
   useEffect(() => {
     window.scrollTo(0, 0);

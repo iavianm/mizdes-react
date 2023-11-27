@@ -23,8 +23,17 @@ export default function App() {
   const [useMessage, setUseMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isTokenChecked, setIsTokenChecked] = useState(false);
+
+  
+  // добвавила в другой попап тоже запрет прокрутки фона
+  function toggleBodyOverflow() {
+    const body = document.body;
+    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+  }
+   
   function handleTogglePopup() {
     setOpenPopup(!openPopup);
+    toggleBodyOverflow()
   }
 
   useEffect(() => {
