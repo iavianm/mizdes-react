@@ -5,7 +5,6 @@ import TerraceBlock from "../TerraceBlock/TerraceBlock.jsx";
 import heroContent from "../../content/heroContent.json";
 import { useEffect, useState } from "react";
 import HousesPopup from "../HousesPopup/HousesPopup.jsx";
-// import TourPopup from "@/app/components/TourPopup/TourPopup";
 
 const HousesPage = ({ handleTogglePopup }) => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -13,7 +12,7 @@ const HousesPage = ({ handleTogglePopup }) => {
 
   function toggleBodyOverflow() {
     const body = document.body;
-    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
   }
 
   function handleTogglePopupTour(house) {
@@ -48,10 +47,10 @@ const HousesPage = ({ handleTogglePopup }) => {
         handleTogglePopupTour={handleTogglePopupTour}
       />
       <TerraceBlock />
-      <HousesPopup 
-      selectedHouse={selectedHouse}
-      isVisiblie={openPopup}
-      onClose={handleTogglePopupTour}
+      <HousesPopup
+        selectedHouse={selectedHouse}
+        isVisiblie={openPopup}
+        onClose={handleTogglePopupTour}
       />
     </section>
   );

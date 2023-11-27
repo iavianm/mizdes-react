@@ -3,7 +3,7 @@ import "./HousesPopup.css";
 
 export default function HousesPopup({ isVisiblie, selectedHouse, onClose }) {
   const { scheme, option, items, texts, quantity } =
-    housesPopupContent.highgarden;
+    housesPopupContent[selectedHouse] || housesPopupContent["riviera"];
 
   return (
     <div className={`popup-overlay ${isVisiblie ? "popup-open" : ""}`}>
