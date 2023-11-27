@@ -70,6 +70,7 @@ li {
 .header-burger__btn {
   border: none;
   background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .header-burger__img {
