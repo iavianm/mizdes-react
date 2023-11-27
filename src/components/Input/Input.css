@@ -1,0 +1,35 @@
+.input__label {
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+    margin-bottom: 5px;
+}
+
+.input {
+    display: block;
+    border: none;
+    border-bottom: #E8E8E8 1px solid;
+    outline: none;
+    font-size: 14px;
+    padding: 0 0 9px;
+}
+
+.input__error {
+    margin-top: 7px;
+    min-height: 12px;
+    font-size: 10px;
+    color: #EE3465;
+    margin-bottom: 5px;
+}
+
+.input:focus {
+    border-bottom: #FF6838 1px solid;
+}
+
+.input__border-red {
+    border-bottom: #EE3465 1px solid;
+}
+
+.input__text-red {
+    color: #EE3465;
+}

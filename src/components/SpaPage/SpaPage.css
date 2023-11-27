@@ -2,7 +2,7 @@
   padding: 80px 0 100px 0;
   margin: 0 auto;
   max-width: 1280px;
-  width: calc(100% - 2 * 70px);
+  width: 100%;
 }
 
 .slider-spa {
@@ -14,18 +14,30 @@
 .slider-spa__img {
   margin: 0;
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
   object-fit: cover;
 }
 
-@media screen and (max-width: 768px) {
-  .villas-spa__section {
-    width: calc(100% - 2 * 40px);
+/*@media screen and (max-width: 768px) {*/
+/*  .villas-spa__section {*/
+/*    width: calc(100% - 2 * 40px);*/
+/*  }*/
+/*}*/
+
+/*@media screen and (max-width: 480px) {*/
+/*  .villas-spa__section {*/
+/*    width: calc(100% - 2 * 20px);*/
+/*  }*/
+/*}*/
+
+@media screen and (max-width: 770px) {
+  .slider-spa__img {
+    height: 50vh;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .villas-spa__section {
-    width: calc(100% - 2 * 20px);
+@media screen and (max-width: 500px) {
+  .slider-spa__img {
+    height: 30vh;
   }
 }
