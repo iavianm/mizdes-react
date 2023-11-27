@@ -8,7 +8,7 @@ export default function HousesPopup({
   onClose
 }) 
 {
-  const { scheme, option, items, texts, quantity } = housesPopupContent.riviera;  
+  const { scheme, option, items, texts, quantity } = housesPopupContent.highgarden;  
 
   return (
     <div className={`popup-overlay ${isVisiblie ? "popup-open" : ""}`}>

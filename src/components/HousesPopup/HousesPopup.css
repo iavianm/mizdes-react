@@ -155,8 +155,11 @@
 
   .popup-schemes {
     display: flex;
+  
+    flex-direction: column;
     justify-content: center;
-    flex: 1;
+    align-items: center;
+    /* flex: 1; */
   }
 
   .popup-scheme {
