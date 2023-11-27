@@ -1,4 +1,3 @@
-import close from "../../../public/images/close-icon.svg";
 import housesPopupContent from "../../content/housesPopupContent.json";
 import "./HousesPopup.css";
 
@@ -10,7 +9,7 @@ export default function HousesPopup({ isVisiblie, selectedHouse, onClose }) {
     <div className={`popup-overlay ${isVisiblie ? "popup-open" : ""}`}>
       <div className={`popup-block ${isVisiblie ? "popup-open" : ""}`}>
         <button className="popup-btn-close" onClick={onClose}>
-          <img src={close} alt="Close" />
+          <img src={"/images/close-icon.svg"} alt="Close" />
         </button>
         <div className="popup-container">
           <div className="popup-schemes">

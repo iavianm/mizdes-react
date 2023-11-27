@@ -46,8 +46,17 @@
   transform: scale(1.1);
 }
 
+.popup-container {
+  display: flex;
+  gap: 30px;
+  padding: 50px;
+  max-height: 95vh;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
 .popup-schemes {
-  flex: 2;
+  flex: 1;
   /* justify-content: center; */
 }
 
@@ -63,12 +72,6 @@
 .popup-option {
   max-width: 70%;
   height: auto;
-}
-
-.popup-container {
-  display: flex;
-  gap: 30px;
-  padding: 50px;
 }
 
 .popup-content {
