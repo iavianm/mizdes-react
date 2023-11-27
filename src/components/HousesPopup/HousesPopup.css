@@ -24,7 +24,7 @@
 
 .popup-block {
   width: 95vw;
-  height: 95vh;
+  height: auto;
   margin: 20px;
   background-color: #1b0c42;
   display: flex;
@@ -56,6 +56,10 @@
   height: auto;
 }
 
+.popup-options {
+  margin-bottom: 40px;
+}
+
 .popup-option {
   max-width: 70%;
   height: auto;
@@ -79,6 +83,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 40px;
 }
 
 .popup-item {
@@ -87,6 +92,10 @@
   border-radius: 3px;
   padding: 10px;
   font-size: 16px;
+}
+
+.popup-texts {
+  margin-bottom: 40px;
 }
 
 .popup-text {
@@ -98,6 +107,10 @@
 
 .popup-text:last-of-type {
   padding-bottom: 0;
+}
+
+.popup-quantitys {
+  margin-bottom: 50px;
 }
 
 .popup-quantity {
@@ -126,23 +139,16 @@
 }
 
 @media screen and (max-width: 970px) {
-  .popup-container {
-    padding: 30px;
-  }
-
   .popup-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
   }
 
   .popup-block {
-    top: 50px;
-    bottom: 50px;
-    height: 110%;
+    margin: 150px 0 30px;
   }
 
   .popup-container {
+    padding: 30px;
     flex-direction: column;
     gap: 5px;
   }
@@ -165,6 +171,7 @@
   .popup-options {
     display: flex;
     justify-content: center;
+    margin: 0;
   }
   .popup-content {
     flex: 3;
@@ -175,6 +182,7 @@
   .popup-items {
     gap: 5px;
     justify-content: center;
+    margin-bottom: 20px;
   }
 
   .popup-item {
@@ -182,9 +190,17 @@
     font-size: 12px;
   }
 
+  .popup-texts {
+    margin-bottom: 20px;
+  }
+
   .popup-text {
     font-size: 12px;
     padding-bottom: 15px;
+  }
+
+  .popup-quantitys {
+    margin-bottom: 15px;
   }
 
   .popup-quantity {
@@ -193,6 +209,10 @@
 }
 
 @media screen and (max-width: 450px) {
+  .popup-block {
+    margin: 200px 0 30px;
+  }
+
   .popup-container {
     padding: 20px;
   }
