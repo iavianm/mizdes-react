@@ -125,7 +125,7 @@
   transform: scale(1.03);
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 970px) {
   .popup-container {
     padding: 30px;
   }
