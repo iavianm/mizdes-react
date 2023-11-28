@@ -1,6 +1,11 @@
 import "./ContactsPage.css";
+import { useEffect } from "react";
 
 const ContactsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="main">
       <section className="contacts">

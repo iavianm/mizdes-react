@@ -1,7 +1,17 @@
 import "./Houses.css";
 
-const Houses = ({ house, handleTogglePopup, handleTogglePopupTour }) => {
+const Houses = ({
+  house,
+  handleTogglePopup,
+  handleTogglePopupTour,
+  handleChangeVillas,
+}) => {
   const { key, title, specs, description, tags, about, buttons, image } = house;
+
+  const handleButtonClick = () => {
+    handleTogglePopup();
+    handleChangeVillas(key);
+  };
 
   return (
     <>
@@ -37,7 +47,7 @@ const Houses = ({ house, handleTogglePopup, handleTogglePopupTour }) => {
                 ))}
               </div>
               <div className="buttons-container">
-                <button className="button-book" onClick={handleTogglePopup}>
+                <button className="button-book" onClick={handleButtonClick}>
                   {buttons.book}
                 </button>
                 <button

@@ -16,23 +16,3 @@ body {
   max-width: 3000px;
   width: 100%;
 }
-
-:root {
-  --blue-color: #1b0c42;
-  --blue-color-rgba: rgba(27, 12, 66, 0.4);
-  --orange-color: #d38c20;
-  --orange-color-hover: #f1a129;
-  --orange-color-active: #cf8b25;
-
-  --font-size-h2: 46px;
-  --font-size-p: 20px;
-  --font-size-span: 14px;
-
-  --fz-h2-768: 36px;
-  --fz-p-768: 16px;
-  --fz-span-768: 14px;
-
-  --fz-h2-480: 28px;
-  --fz-p-480: 12px;
-  --fz-span-480: 14px;
-}
