@@ -41,3 +41,27 @@
 .book-button:hover {
   background-color: #cc8400; /* Темный оттенок оранжевого для эффекта при наведении */
 }
+
+@media screen and (max-width: 768px) {
+  .terrace-container {
+    max-width: 90%;
+  }
+
+  .terrace-title {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .terrace-container {
+    max-width: 100%;
+  }
+
+  .terrace-block {
+    padding: 25px;
+  }
+
+  .terrace-title {
+    font-size: 24px;
+  }
+}
