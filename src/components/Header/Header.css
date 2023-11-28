@@ -47,7 +47,7 @@ li {
   line-height: 1.55;
   font-weight: 500;
   border-radius: 6px;
-  background-color: #d38c20;
+  background-color: var(--orange-color);
   /*background-image: linear-gradient(45deg, #ffcc00, #f896b7);*/
   background-size: 200% 200%;
   border-color: transparent;
@@ -57,7 +57,7 @@ li {
 
 .header__button:hover {
   cursor: pointer;
-  background-color: #e09a30;
+  background-color: var(--orange-color-active);
   color: #fff;
   transform: scale(1.03);
 }
@@ -87,7 +87,7 @@ li {
 @media screen and (max-width: 768px) {
   .header {
     justify-content: space-between;
-    background-color: rgba(12, 14, 63, 0.4);
+    background-color: var(--blue-color-rgba);
     width: 100%;
     position: fixed;
     z-index: 1000;

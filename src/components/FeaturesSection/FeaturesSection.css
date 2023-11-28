@@ -16,14 +16,14 @@
 }
 
 .features-heading h2 {
-  font-size: 2rem;
+  font-size: var(--font-size-h2);
   color: #000000;
 }
 
 .features-heading p {
   color: #000;
   margin: 20px 0;
-  font-size: 1.2em;
+  font-size: var(--font-size-p);
   /* max-width: 800px; */
 }
 
@@ -71,6 +71,14 @@
   .features-section {
     width: calc(100% - 2 * 40px);
   }
+
+  .features-heading h2 {
+    font-size: var(--fz-h2-768);
+  }
+
+  .features-heading p {
+    font-size: var(--fz-p-768);
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -78,9 +86,9 @@
     width: calc(100% - 2 * 20px);
   }
   .features-heading h2 {
-    font-size: 24px;
+    font-size: var(--fz-h2-480);
   }
   .features-heading p {
-    font-size: 14px;
+    font-size: var(--fz-p-480);
   }
 }

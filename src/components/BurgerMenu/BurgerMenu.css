@@ -17,7 +17,7 @@
   top: 0;
   right: 0;
   height: 100vh;
-  background-color: #1b0c42;
+  background-color: var(--blue-color);
   padding: 48px 40px 38px;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   top: 10px;
   right: 10px;
   border: none;
-  background-color: #1b0c42;
+  background-color: var(--blue-color);
 }
 
 .burger__close-btn:hover {
@@ -71,7 +71,7 @@
 }
 
 .active {
-  color: #cc8400;
+  color: var(--orange-color-active);
 }
 
 .burger__nav {
@@ -80,7 +80,7 @@
 }
 
 .burger__item:focus {
-  color: #d38c20;
+  color: var(--orange-color);
 }
 
 .burger__number {
