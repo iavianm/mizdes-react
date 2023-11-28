@@ -10,7 +10,7 @@
   text-align: left; /* Выравниваем текст по левому краю */
 }
 
-.text-block h1 {
+.text-block h3 {
   font-size: 1.5em; /* Адаптируем размер заголовка */
   margin-bottom: 0.5em;
   color: #000000;
@@ -34,7 +34,4 @@
     width: calc(100% - 2 * 20px);
     padding: 10px;
   }
-
-
-
 }
