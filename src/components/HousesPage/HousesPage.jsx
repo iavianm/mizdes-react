@@ -13,6 +13,7 @@ const HousesPage = ({ handleTogglePopup }) => {
   function toggleBodyOverflow() {
     const body = document.body;
     body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
+    body.style.height = body.style.height === '100vh' ? '' : '100vh';
   }
 
   function handleTogglePopupTour(house) {
