@@ -50,8 +50,8 @@
 }
 
 .menu__option {
-  color: var(--orange-color);
-  border: 3px solid var(--orange-color);
+  color: #d38c20;
+  border: 3px solid #d38c20;
   border-radius: 5px;
   padding: 25px 10px;
   font-size: 24px;
@@ -60,7 +60,7 @@
 }
 
 .menu__link {
-  color: var(--orange-color);
+  color: #90621b;
   font-size: 24px;
   font-weight: 600;
   text-decoration: none;

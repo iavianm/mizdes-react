@@ -7,12 +7,12 @@
 }
 
 .leisureBlock h2 {
-  font-size: var(--font-size-h2);
+  font-size: 2rem;
 }
 
 .subtitle {
   margin-bottom: 20px;
-  font-size: var(--font-size-p);
+  font-size: 1.1em;
   color: #000000;
 }
 
@@ -60,29 +60,10 @@
   .leisureBlock {
     width: calc(100% - 2 * 40px);
   }
-
-  .leisureBlock h2 {
-    font-size: var(--fz-h2-768);
-  }
-  
-  .subtitle {
-    margin-bottom: 20px;
-    font-size: var(--fz-p-768);
-    color: #000000;
-  }
-  
 }
 
 @media screen and (max-width: 480px) {
   .leisureBlock {
     width: calc(100% - 2 * 20px);
-  }
-
-  .leisureBlock h2 {
-    font-size: var(--fz-h2-480);
-  }
-
-  .subtitle {
-    font-size: var(--fz-p-480);
   }
 }

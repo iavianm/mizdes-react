@@ -6,7 +6,7 @@
 }
 
 .villas-section h2 {
-  font-size: var(--font-size-h2);
+  font-size: 3rem;
   color: #000000;
   margin: 20px 0;
 }
@@ -14,7 +14,7 @@
 .villas-section p {
   color: #000;
   margin: 20px 0 25px;
-  font-size: var(--font-size-p);
+  font-size: 1.1em;
 }
 
 .villasGrid {
@@ -39,14 +39,6 @@
   .villas-section {
     width: calc(100% - 2 * 40px);
   }
-  
-  .villas-section h2 {
-    font-size: var(--fz-h2-768);
-  }
-
-  .villas-section p {
-    font-size: var(--fz-p-768);
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -55,10 +47,6 @@
   }
 
   .villas-section h2 {
-    font-size: var(--fz-h2-480);
-  }
-
-  .villas-section p {
-    font-size: var(--fz-p-480);
+    font-size: 28px;
   }
 }

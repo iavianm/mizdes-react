@@ -42,7 +42,7 @@ const SiteSlider = ({ title, images, link }) => {
 
   return (
     <div className="slider__content">
-      <h2 className="slider__header">{title}</h2>
+      <h1 className="slider__header">{title}</h1>
       <div className="slider__container">
         <Slider {...settings}>
           {duplicatedSlides.map((item) => (
