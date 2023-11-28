@@ -19,17 +19,17 @@
 }
 
 .terrace-title {
-  font-size: 2em; /* Размер шрифта для заголовка */
+  font-size: var(--font-size-h2); /* Размер шрифта для заголовка */
   margin-bottom: 70px; /* Отступ под заголовком */
 }
 
 .terrace-description {
-  font-size: 1em; /* Размер шрифта для описания */
+  font-size: var(--font-size-p); /* Размер шрифта для описания */
   margin-bottom: 200px; /* Отступ под описанием */
 }
 
 .book-button {
-  background-color: #ffa500; /* Оранжевый цвет фона кнопки */
+  background-color: var(--orange-color); /* Оранжевый цвет фона кнопки */
   border: none;
   color: white;
   padding: 15px 30px;
@@ -39,29 +39,25 @@
 }
 
 .book-button:hover {
-  background-color: #cc8400; /* Темный оттенок оранжевого для эффекта при наведении */
+  background-color: var(--orange-color-hover); /* Темный оттенок оранжевого для эффекта при наведении */
 }
 
 @media screen and (max-width: 768px) {
-  .terrace-container {
-    max-width: 90%;
+  .terrace-title {
+    font-size: var(--fz-h2-768);
   }
 
-  .terrace-title {
-    font-size: 28px;
+  .terrace-description {
+    font-size: var(--fz-p-768);
   }
 }
 
 @media screen and (max-width: 480px) {
-  .terrace-container {
-    max-width: 100%;
-  }
-
-  .terrace-block {
-    padding: 25px;
-  }
-
   .terrace-title {
-    font-size: 24px;
+    font-size: var(--fz-h2-480);
+  }
+
+  .terrace-description {
+    font-size: var(--fz-p-480);
   }
 }
