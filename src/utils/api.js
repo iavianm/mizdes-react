@@ -66,6 +66,8 @@ export const getBookings = () =>
   }).then(getResponse);
 
 export function createBooking(booking) {
+  console.log(typeof booking.phone);
+
   return fetch(`${BASE_URL}/bookings`, {
     method: "POST",
     credentials: "include",
@@ -73,6 +75,15 @@ export function createBooking(booking) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(booking),
+    body: JSON.stringify({
+      cottageType: booking.cottage_type,
+      name: booking.name,
+      arrivalDate: booking.arrival_date,
+      departureDate: booking.departure_date,
+      adults: booking.adults,
+      children: booking.children,
+      phone: booking.phone,
+      email: booking.email,
+    }),
   }).then(getResponse);
 }
