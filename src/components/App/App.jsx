@@ -29,6 +29,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [bookingMessage, setBookingMessage] = useState("");
+  const [villaType, setVillaType] = useState("any");
 
   // добвавила в другой попап тоже запрет прокрутки фона
   function toggleBodyOverflow() {
@@ -39,6 +40,7 @@ export default function App() {
   function handleTogglePopup() {
     setOpenPopup(!openPopup);
     toggleBodyOverflow();
+    setVillaType("any");
   }
 
   useEffect(() => {
@@ -111,6 +113,10 @@ export default function App() {
       .finally(() => setUsePreloader(false));
   }
 
+  function handleChangeVillas(type) {
+    setVillaType(type);
+  }
+
   return (
     <main className={"main"}>
       <Header handleTogglePopup={handleTogglePopup} />
@@ -123,7 +129,12 @@ export default function App() {
           />
           <Route
             path="/houses"
-            element={<HousesPage handleTogglePopup={handleTogglePopup} />}
+            element={
+              <HousesPage
+                handleTogglePopup={handleTogglePopup}
+                handleChangeVillas={handleChangeVillas}
+              />
+            }
           />
           <Route
             path="/restaurant"
@@ -160,6 +171,7 @@ export default function App() {
         isVisible={openPopup}
         handleTogglePopup={handleTogglePopup}
         handleCreateBooking={handleCreateBooking}
+        villaType={villaType}
       />
     </main>
   );

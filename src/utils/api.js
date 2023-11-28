@@ -66,8 +66,6 @@ export const getBookings = () =>
   }).then(getResponse);
 
 export function createBooking(booking) {
-  console.log(typeof booking.phone);
-
   return fetch(`${BASE_URL}/bookings`, {
     method: "POST",
     credentials: "include",

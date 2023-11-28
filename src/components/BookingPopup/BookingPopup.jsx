@@ -1,14 +1,16 @@
 import "./BookingPopup.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthForm from "../AuthForm/AuthForm.jsx";
 
 const BookingPopup = ({
   isVisible,
   handleTogglePopup,
   handleCreateBooking,
+  villaType,
 }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+  const [cottageType, setCottageType] = useState("any");
   const { register, errors, isValid, handleSubmit, reset, setValue } =
     AuthForm();
 
@@ -31,6 +33,11 @@ const BookingPopup = ({
     }
   }
 
+  useEffect(() => {
+    setCottageType(villaType);
+    setValue("cottage_type", villaType);
+  }, [villaType]);
+
   const onSubmit = (data) => {
     handleCreateBooking(data);
     if (isVisible) {
@@ -47,10 +54,20 @@ const BookingPopup = ({
       value: 10,
       message: "Минимальное кол-во символов: 10",
     },
+    maxLength: {
+      value: 12,
+      message: "Минимальное кол-во символов: 12",
+    },
     pattern: {
       value: /^\+?[0-9\- ]+$/,
       message: "Поле должно содержать только цифры, пробелы и плюс",
     },
+  };
+
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    setCottageType(selectedValue);
+    setValue("cottage_type", selectedValue);
   };
 
   return (
@@ -87,10 +104,12 @@ const BookingPopup = ({
                 name="cottage_type"
                 {...register("cottage_type")}
                 className="form-control form-group-option"
+                value={cottageType}
+                onChange={handleSelectChange}
               >
                 <option value="riviera">Ривьера</option>
                 <option value="grandis">Грандис</option>
-                <option value="haigarden">Хайгарден</option>
+                <option value="highgarden">Хайгарден</option>
                 <option value="any">Любой вариант</option>
               </select>
             </div>
@@ -219,7 +238,13 @@ const BookingPopup = ({
                 {errors ? errors["phone"]?.message || "" : ""}
               </span>
             </div>
-            <button type="submit" className="submit-button" disabled={!isValid}>
+            <button
+              type="submit"
+              className={`submit-button ${
+                !isValid ? "submit-button-disable" : ""
+              }`}
+              disabled={!isValid}
+            >
               Забронировать
             </button>
           </form>
