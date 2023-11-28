@@ -6,6 +6,7 @@ function Login(props) {
   const { register, errors, isValid, handleSubmit, reset } = AuthForm();
   return (
     <section className={"login"}>
+      <div className="login-container">
       <LoginRegisterForm
         buttonText={"Войти"}
         title={"Рады видеть!"}
@@ -33,6 +34,7 @@ function Login(props) {
           errors={errors}
         />
       </LoginRegisterForm>
+      </div>
     </section>
   );
 }

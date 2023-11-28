@@ -1,4 +1,5 @@
-export const BASE_URL = "http://localhost:3000";
+// export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://www.mizdes.com/api";
 
 function getResponse(res) {
   if (!res.ok) {
@@ -42,3 +43,45 @@ export const loginWithCookie = () =>
       "Content-Type": "application/json",
     },
   }).then(getResponse);
+
+export const removeBooking = (bookingId) => {
+  return fetch(`${BASE_URL}/bookings/${bookingId}`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then(getResponse);
+};
+
+export const getBookings = () =>
+  fetch(`${BASE_URL}/bookings`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then(getResponse);
+
+export function createBooking(booking) {
+  return fetch(`${BASE_URL}/bookings`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      cottageType: booking.cottage_type,
+      name: booking.name,
+      arrivalDate: booking.arrival_date,
+      departureDate: booking.departure_date,
+      adults: booking.adults,
+      children: booking.children,
+      phone: booking.phone,
+      email: booking.email,
+    }),
+  }).then(getResponse);
+}

@@ -9,7 +9,12 @@ import ContactsPage from "../ContactsPage/ContactsPage.jsx";
 import { useEffect, useState } from "react";
 import BookingPopup from "../BookingPopup/BookingPopup.jsx";
 import Login from "../Login/Login.jsx";
-import { login, loginWithCookie, logout } from "../../utils/api.js";
+import {
+  createBooking,
+  login,
+  loginWithCookie,
+  logout,
+} from "../../utils/api.js";
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
@@ -23,17 +28,19 @@ export default function App() {
   const [useMessage, setUseMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isTokenChecked, setIsTokenChecked] = useState(false);
+  const [bookingMessage, setBookingMessage] = useState("");
+  const [villaType, setVillaType] = useState("any");
 
-  
   // добвавила в другой попап тоже запрет прокрутки фона
   function toggleBodyOverflow() {
     const body = document.body;
-    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
   }
-   
+
   function handleTogglePopup() {
     setOpenPopup(!openPopup);
-    toggleBodyOverflow()
+    toggleBodyOverflow();
+    setVillaType("any");
   }
 
   useEffect(() => {
@@ -92,6 +99,24 @@ export default function App() {
       });
   }
 
+  function handleCreateBooking(booking) {
+    setUsePreloader(true);
+    createBooking(booking)
+      .then(() => {
+        setBookingMessage("Бронирование создано");
+        handleTogglePopup();
+      })
+      .catch((error) => {
+        console.log(error);
+        setBookingMessage("Ошибка создания бронирования, попробуйте снова");
+      })
+      .finally(() => setUsePreloader(false));
+  }
+
+  function handleChangeVillas(type) {
+    setVillaType(type);
+  }
+
   return (
     <main className={"main"}>
       <Header handleTogglePopup={handleTogglePopup} />
@@ -104,7 +129,12 @@ export default function App() {
           />
           <Route
             path="/houses"
-            element={<HousesPage handleTogglePopup={handleTogglePopup} />}
+            element={
+              <HousesPage
+                handleTogglePopup={handleTogglePopup}
+                handleChangeVillas={handleChangeVillas}
+              />
+            }
           />
           <Route
             path="/restaurant"
@@ -140,6 +170,8 @@ export default function App() {
       <BookingPopup
         isVisible={openPopup}
         handleTogglePopup={handleTogglePopup}
+        handleCreateBooking={handleCreateBooking}
+        villaType={villaType}
       />
     </main>
   );

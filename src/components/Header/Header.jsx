@@ -24,7 +24,7 @@ function Header({ handleTogglePopup }) {
 
   return (
     <header className={"header"}>
-      {windowWidth > 768 ? (
+      {windowWidth > 770 ? (
         <>
           <Link className={"header__logo-link"} to={"/"}>
             <img

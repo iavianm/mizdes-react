@@ -1,13 +1,74 @@
 import "./BookingPopup.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AuthForm from "../AuthForm/AuthForm.jsx";
 
-const BookingPopup = ({ isVisible, handleTogglePopup }) => {
+const BookingPopup = ({
+  isVisible,
+  handleTogglePopup,
+  handleCreateBooking,
+  villaType,
+}) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+  const [cottageType, setCottageType] = useState("any");
+  const { register, errors, isValid, handleSubmit, reset, setValue } =
+    AuthForm();
+
+  const handleSetAdults = (newAdults) => {
+    setAdults(newAdults);
+    setValue("adults", newAdults);
+  };
+
+  const handleSetChildren = (newChildren) => {
+    setChildren(newChildren);
+    setValue("children", newChildren);
+  };
 
   function onClose() {
     handleTogglePopup();
+    if (isVisible) {
+      setAdults(1);
+      setChildren(0);
+      reset();
+    }
   }
+
+  useEffect(() => {
+    setCottageType(villaType);
+    setValue("cottage_type", villaType);
+  }, [villaType]);
+
+  const onSubmit = (data) => {
+    handleCreateBooking(data);
+    if (isVisible) {
+      setAdults(1);
+      setChildren(0);
+      reset();
+    }
+  };
+
+  const errorPhone = {
+    type: String,
+    required: "Обязательное поле",
+    minLength: {
+      value: 10,
+      message: "Минимальное кол-во символов: 10",
+    },
+    maxLength: {
+      value: 12,
+      message: "Минимальное кол-во символов: 12",
+    },
+    pattern: {
+      value: /^\+?[0-9\- ]+$/,
+      message: "Поле должно содержать только цифры, пробелы и плюс",
+    },
+  };
+
+  const handleSelectChange = (e) => {
+    const selectedValue = e.target.value;
+    setCottageType(selectedValue);
+    setValue("cottage_type", selectedValue);
+  };
 
   return (
     <>
@@ -26,7 +87,11 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
             втором заселении. В дальнейшем % вашей скидки будет зависеть от
             общей потраченной суммы.
           </p>
-          <form className={"form-group-container"}>
+          <form
+            className={"form-group-container"}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+          >
             <div className="form-group">
               <label
                 htmlFor="cottage-type"
@@ -37,16 +102,20 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
               <select
                 id="cottage-type"
                 name="cottage_type"
+                {...register("cottage_type")}
                 className="form-control form-group-option"
+                value={cottageType}
+                onChange={handleSelectChange}
               >
                 <option value="riviera">Ривьера</option>
                 <option value="grandis">Грандис</option>
-                <option value="haigarden">Хайгарден</option>
+                <option value="highgarden">Хайгарден</option>
                 <option value="any">Любой вариант</option>
               </select>
             </div>
             <div className="form-group-date">
               <input
+                {...register("arrival_date")}
                 type="text"
                 id="arrival-date"
                 name="arrival_date"
@@ -69,6 +138,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 type="text"
                 id="departure-date"
                 name="departure_date"
+                {...register("departure_date")}
                 className="form-control"
                 placeholder="Дата выезда"
                 onFocus={(e) => {
@@ -89,7 +159,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 <button
                   type="button"
                   className="quantity-minus"
-                  onClick={() => setAdults(adults > 0 ? adults - 1 : 0)}
+                  onClick={() => handleSetAdults(adults > 0 ? adults - 1 : 0)}
                 >
                   -
                 </button>
@@ -97,6 +167,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                   type="text"
                   id="adults"
                   name="adults"
+                  {...register("adults")}
                   className="quantity-input"
                   readOnly
                   value={adults} // Здесь должно быть состояние из вашего компонента
@@ -104,7 +175,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 <button
                   type="button"
                   className="quantity-plus"
-                  onClick={() => setAdults(adults + 1)}
+                  onClick={() => handleSetAdults(adults + 1)}
                 >
                   +
                 </button>
@@ -117,7 +188,9 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 <button
                   type="button"
                   className="quantity-minus"
-                  onClick={() => setChildren(children > 0 ? children - 1 : 0)}
+                  onClick={() =>
+                    handleSetChildren(children > 0 ? children - 1 : 0)
+                  }
                 >
                   -
                 </button>
@@ -125,6 +198,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                   type="text"
                   id="children"
                   name="children"
+                  {...register("children")}
                   className="quantity-input"
                   readOnly
                   value={children} // И здесь состояние из вашего компонента
@@ -132,7 +206,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 <button
                   type="button"
                   className="quantity-plus"
-                  onClick={() => setChildren(children + 1)}
+                  onClick={() => handleSetChildren(children + 1)}
                 >
                   +
                 </button>
@@ -144,6 +218,7 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 type="text"
                 id="name"
                 name="name"
+                {...register("name")}
                 className="form-control"
               />
             </div>
@@ -153,11 +228,23 @@ const BookingPopup = ({ isVisible, handleTogglePopup }) => {
                 type="tel"
                 id="phone"
                 name="phone"
+                {...register("phone", errorPhone)}
                 className="form-control"
-                placeholder="+7 (999) 999-99-99"
+                placeholder="+7 999 888 77 66"
               />
+              <span
+                className={`input__error ${errors ? "input__error-show" : ""}`}
+              >
+                {errors ? errors["phone"]?.message || "" : ""}
+              </span>
             </div>
-            <button type="submit" className="submit-button">
+            <button
+              type="submit"
+              className={`submit-button ${
+                !isValid ? "submit-button-disable" : ""
+              }`}
+              disabled={!isValid}
+            >
               Забронировать
             </button>
           </form>

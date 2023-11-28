@@ -14,7 +14,6 @@
   justify-content: center;
   align-items: center;
   z-index: 11000;
-  overflow-y: scroll;
 }
 
 .popup-open {
@@ -24,7 +23,7 @@
 
 .popup-block {
   width: 95vw;
-  height: auto;
+  height: 95vh;
   margin: 20px;
   background-color: #1b0c42;
   display: flex;
@@ -70,7 +69,7 @@
 }
 
 .popup-option {
-  max-width: 70%;
+  max-width: 80%;
   height: auto;
 }
 
@@ -146,14 +145,14 @@
     text-align: center;
   }
 
-  .popup-block {
-    margin: 150px 0 30px;
-  }
-
   .popup-container {
     padding: 30px;
     flex-direction: column;
     gap: 5px;
+  }
+
+  .popup-option {
+    max-width: 90%;
   }
 
   .popup-schemes {
@@ -167,10 +166,6 @@
   .popup-scheme {
     max-width: 40%;
     transform: rotate(90deg);
-  }
-
-  .popup-option {
-    max-width: 60%;
   }
 
   .popup-options {
@@ -214,10 +209,6 @@
 }
 
 @media screen and (max-width: 450px) {
-  .popup-block {
-    margin: 200px 0 30px;
-  }
-
   .popup-container {
     padding: 20px;
   }
