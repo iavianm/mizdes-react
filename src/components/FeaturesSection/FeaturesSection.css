@@ -61,6 +61,12 @@
   color: #000;
 }
 
+@media screen and (min-width: 900px) and (max-width: 1185px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media screen and (max-width: 1120px) {
   .features-section {
     padding: 0;
