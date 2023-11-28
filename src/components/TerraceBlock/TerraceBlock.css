@@ -2,11 +2,10 @@
 .terrace-block {
   min-height: 550px;
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/images/terrace.png");
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/images/terrace.png") no-repeat center bottom;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
   color: #fff; /* Белый цвет текста */
   text-align: center;
   padding: 50px; /* Подстраивайте отступы по вашему дизайну */
@@ -39,7 +38,9 @@
 }
 
 .book-button:hover {
-  background-color: var(--orange-color-hover); /* Темный оттенок оранжевого для эффекта при наведении */
+  background-color: var(
+    --orange-color-hover
+  ); /* Темный оттенок оранжевого для эффекта при наведении */
 }
 
 @media screen and (max-width: 768px) {
@@ -50,25 +51,24 @@
   .terrace-description {
     font-size: var(--fz-p-768);
 
-  .terrace-container {
-    max-width: 90%;
+    .terrace-container {
+      max-width: 90%;
+    }
+
+    .terrace-title {
+      font-size: 28px;
+    }
   }
 
-  .terrace-title {
-    font-size: 28px;
+  @media screen and (max-width: 480px) {
+    .terrace-title {
+      font-size: var(--fz-h2-480);
+    }
 
+    .terrace-description {
+      font-size: var(--fz-p-480);
+    }
   }
-}
-
-@media screen and (max-width: 480px) {
-  .terrace-title {
-    font-size: var(--fz-h2-480);
-  }
-
-  .terrace-description {
-    font-size: var(--fz-p-480);
-  }
-}
   .terrace-container {
     max-width: 100%;
   }

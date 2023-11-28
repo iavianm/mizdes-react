@@ -1,8 +1,7 @@
 .text-block {
   max-width: 1200px;
   width: calc(100% - 2 * 70px);
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: 0 auto 50px;
   padding: 40px; /* Добавляем больше отступа */
   background: #efeeee;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

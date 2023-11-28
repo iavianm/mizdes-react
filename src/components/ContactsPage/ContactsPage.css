@@ -83,7 +83,7 @@
   .contacts {
     width: calc(100% - 2 * 20px);
   }
-  
+
   .contacts__title {
     font-size: var(--fz-h2-480);
   }
@@ -91,5 +91,4 @@
   .contacts__text {
     font-size: var(--fz-p-480);
   }
-}
 }
