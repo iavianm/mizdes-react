@@ -16,3 +16,14 @@ body {
   max-width: 3000px;
   width: 100%;
 }
+
+/* :root {
+  --blue-color: #1b0c42;
+  --orange-color: #d38c20;
+  --light-orange-color: #ffa500;
+  --font-size-h1: 70px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-size-h4: 14px;
+  --font-size-p: 14px;
+} */
