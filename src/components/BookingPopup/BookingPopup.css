@@ -95,6 +95,15 @@
   background-color: #cc8400; /* Темный оттенок оранжевого для эффекта при наведении */
 }
 
+.submit-button-disable {
+  background-color: #c5c4c4;
+  cursor: not-allowed;
+}
+
+.submit-button-disable:hover {
+  background-color: #c5c4c4;
+}
+
 .quantity-selector {
   display: flex;
   align-items: center;
