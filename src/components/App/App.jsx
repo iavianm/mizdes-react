@@ -18,11 +18,11 @@ import {
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
-import Admin from "../Admin/Admin.jsx";
+import Admin from "../Admin/Admin.tsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [usePreloader, setUsePreloader] = useState(false);
   const navigate = useNavigate();
   const [useMessage, setUseMessage] = useState("");
