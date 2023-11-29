@@ -63,3 +63,9 @@
   color: #d38c20;
   font-weight: bold;
 }
+
+@media screen and (max-width: 600px) {
+  .mapContainer {
+    display: none;
+  }
+}

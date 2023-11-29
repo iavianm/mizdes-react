@@ -25,19 +25,20 @@ const InteractiveMap = () => {
         >
           <div className="point" />
           {activePoint === point.id && (
-            <div className="tooltip">
-              <img
-                src={point.image}
-                alt={point.label}
-                style={{ width: "300px", height: "160px", objectFit: "cover" }}
-              />
-              <div className="tooltipText">{point.label}</div>
-              <div className={"tooltip__button"}>
-                <a href={point.link} className="moreLink">
-                  Подробнее
-                </a>
+            <a href={point.link} className="moreLink">
+              <div className="tooltip">
+                <img
+                  src={point.image}
+                  alt={point.label}
+                  style={{
+                    width: "300px",
+                    height: "160px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div className="tooltipText">{point.label}</div>
               </div>
-            </div>
+            </a>
           )}
         </div>
       ))}
