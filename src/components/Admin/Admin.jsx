@@ -1,9 +1,8 @@
-import * as React from "react";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
 import "./Admin.css";
 
-const initialRows: GridRowsProp = [
+const initialRows = [
   {
     id: 1,
     col1: "Hello",
@@ -18,7 +17,7 @@ const initialRows: GridRowsProp = [
   { id: 3, col1: "MUI", col2: "is Amazing" },
 ];
 
-const columns: GridColDef[] = [
+const columns = [
   { field: "col1", headerName: "Имя", width: 250 },
   { field: "col2", headerName: "Номер телефона", width: 250 },
   { field: "col3", headerName: "Коттедж", width: 250 },
@@ -29,11 +28,10 @@ const columns: GridColDef[] = [
 ];
 
 export default function Admin() {
-  const [rows, setRows] = useState<GridRowsProp>(initialRows);
+  const [rows, setRows] = useState(initialRows);
 
   const handleBooking = (bookingData) => {
     const newId = rows.length + 1;
-
     const newRow = {
       id: newId,
       col1: bookingData.name,

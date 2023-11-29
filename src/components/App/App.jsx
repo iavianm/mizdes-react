@@ -18,7 +18,7 @@ import {
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
-import Admin from "../Admin/Admin.tsx";
+import Admin from "../Admin/Admin.jsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
