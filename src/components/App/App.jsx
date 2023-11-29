@@ -22,7 +22,7 @@ import Admin from "../Admin/Admin.jsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [usePreloader, setUsePreloader] = useState(false);
   const navigate = useNavigate();
   const [useMessage, setUseMessage] = useState("");
