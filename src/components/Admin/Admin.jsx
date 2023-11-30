@@ -1,50 +1,80 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./Admin.css";
-
-const initialRows = [
-  {
-    id: 1,
-    col1: "Hello",
-    col2: "World",
-    col3: "asdf",
-    col4: "sdfd",
-    col5: "dffg",
-    col6: "dss",
-    col7: "dfghh",
-  },
-  { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-  { id: 3, col1: "MUI", col2: "is Amazing" },
-];
-
-const columns = [
-  { field: "col1", headerName: "Имя", width: 250 },
-  { field: "col2", headerName: "Номер телефона", width: 250 },
-  { field: "col3", headerName: "Коттедж", width: 250 },
-  { field: "col4", headerName: "Дата заезда", width: 200 },
-  { field: "col5", headerName: "Дата выезда", width: 200 },
-  { field: "col6", headerName: "Кол-во взрослых", width: 150 },
-  { field: "col7", headerName: "Кол-во детей", width: 150 },
-];
+import { getBookings, removeBooking } from "../../utils/api.js";
+import { Button } from "@mui/material";
 
 export default function Admin() {
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
+  const [allBookings, setAllBookings] = useState([]);
 
-  const handleBooking = (bookingData) => {
-    const newId = rows.length + 1;
-    const newRow = {
-      id: newId,
-      col1: bookingData.name,
-      col2: bookingData.phone,
-      col3: bookingData.house,
-      col4: bookingData.checkIn,
-      col5: bookingData.checkOut,
-      col6: bookingData.adults,
-      col7: bookingData.child,
-    };
+  const columns = [
+    { field: "col1", headerName: "Имя", flex: 1, minWidth: 150 },
+    { field: "col2", headerName: "Номер телефона", flex: 1, minWidth: 150 },
+    { field: "col3", headerName: "Email", flex: 1, minWidth: 150 },
+    { field: "col4", headerName: "Коттедж", flex: 1, minWidth: 100 },
+    { field: "col5", headerName: "Дата заезда", flex: 1, minWidth: 100 },
+    { field: "col6", headerName: "Дата выезда", flex: 1, minWidth: 100 },
+    { field: "col7", headerName: "Кол-во взрослых", flex: 1, minWidth: 50 },
+    { field: "col8", headerName: "Кол-во детей", flex: 1, minWidth: 50 },
+    {
+      field: "col9",
+      headerName: "",
+      flex: 1,
+      minWidth: 30,
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              handleDeleteBooking(cellValues.id);
+            }}
+          >
+            Удалить
+          </Button>
+        );
+      },
+    },
+  ];
 
-    setRows((prevRows) => [...prevRows, newRow]);
-  };
+  function handleDeleteBooking(id) {
+    removeBooking(id)
+      .then(() => {
+        setAllBookings((state) => state.filter((el) => el._id !== id));
+      })
+      .catch((error) => console.log(error));
+  }
+
+  useEffect(() => {
+    getBookings()
+      .then((res) => {
+        setAllBookings(res);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  useEffect(() => {
+    if (allBookings) {
+      setRows(normalizeBookings(allBookings));
+    }
+  }, [allBookings]);
+
+  function normalizeBookings(bookingsArray) {
+    return bookingsArray.map((el) => {
+      return {
+        id: el._id,
+        col1: el.name,
+        col2: el.phone,
+        col3: el.email,
+        col4: el.cottageType,
+        col5: el.arrivalDate,
+        col6: el.departureDate,
+        col7: el.adults,
+        col8: el.children,
+      };
+    });
+  }
 
   return (
     <section className="admin">
