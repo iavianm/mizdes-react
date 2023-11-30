@@ -44,12 +44,12 @@ const HousesPage = ({ handleTogglePopup, handleChangeVillas }) => {
         handleTogglePopupTour={handleTogglePopupTour}
         handleChangeVillas={handleChangeVillas}
       />
-      <Houses
+      {/* <Houses
         house={housesContent.highgarden}
         handleTogglePopup={handleTogglePopup}
         handleTogglePopupTour={handleTogglePopupTour}
         handleChangeVillas={handleChangeVillas}
-      />
+      /> */}
       <TerraceBlock />
       <HousesPopup
         selectedHouse={selectedHouse}

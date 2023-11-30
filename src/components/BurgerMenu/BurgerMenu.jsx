@@ -108,7 +108,7 @@ export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
                   Номера
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/restaurant"
                   className={"burger__item"}
@@ -121,7 +121,7 @@ export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
                 <NavLink to="/spa" className={"burger__item"} onClick={onClose}>
                   СПА
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to="/contacts"

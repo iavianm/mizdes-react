@@ -87,7 +87,7 @@
 /*}*/
 
 .burger__list {
-  margin: 0;
+  margin: 30px 0 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -114,13 +114,19 @@
   color: var(--orange-color);
 }
 
+.burger__description {
+  text-align: center;
+}
+
 .burger__number {
   color: white;
+  margin: 0 0 15px 0;
 }
 
 .burger__link {
   color: white;
   text-decoration: none;
+  font-size: 13px;
 }
 
 .burger__description {

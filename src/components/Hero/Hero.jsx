@@ -14,6 +14,7 @@ function Hero({ content = {}, handleTogglePopup }) {
 
   return (
     <section className="hero-section">
+      <div className="hero-opacity"></div>
       <div className="hero-content">
         <h3 className="hero__ftitle">{title}</h3>
         <h1 className="hero__title">{subtitle}</h1>
@@ -35,6 +36,7 @@ function Hero({ content = {}, handleTogglePopup }) {
           {buttonText}
         </Link>
       </div>
+      
     </section>
   );
 }
