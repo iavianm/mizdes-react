@@ -44,7 +44,7 @@ function Header({ handleTogglePopup }) {
                 Номера
               </NavLink>
             </li>
-            <li className={"header__list-items"}>
+            {/* <li className={"header__list-items"}>
               <NavLink to="/spa" className={"header__list-item"}>
                 СПА
               </NavLink>
@@ -53,7 +53,7 @@ function Header({ handleTogglePopup }) {
               <NavLink to="/restaurant" className={"header__list-item"}>
                 Ресторан
               </NavLink>
-            </li>
+            </li> */}
             <li className={"header__list-items"}>
               <NavLink to="/contacts" className={"header__list-item"}>
                 Контакты

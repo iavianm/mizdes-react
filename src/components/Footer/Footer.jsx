@@ -15,11 +15,16 @@ const Footer = () => {
             <li>
               <Link to={"/houses"}>Номера</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to={"/spa"}>СПА</Link>
             </li>
             <li>
               <Link to={"/restaurant"}>Ресторан</Link>
+            </li> */}
+             <li>
+              <Link to="/contacts">
+                Контакты
+              </Link>
             </li>
           </ul>
           <Link to="/contacts" className="logo-link">

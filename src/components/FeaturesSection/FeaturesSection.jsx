@@ -11,8 +11,7 @@ export default function FeaturesSection() {
             леса расположен загородный клуб «Мы здесь». 
           </p>
           <p>Современная архитектура
-            вилл с панорамными окнами, круглогодичный видовой СПА центр и
-            панорамный ресторан на берегу Финского залива создают ощущение
+            вилл с панорамными окнами на берегу Финского залива создают ощущение
             полного погружения в покой и единения с природой.</p>
         </div>
         <div className="features-grid">
@@ -33,17 +32,17 @@ export default function FeaturesSection() {
           <div className="feature-item">
             <img src="/images/villa.png" alt="Вилла" />
             <div className="feature-info">
-              <strong>107 вилл</strong>
+              <strong>6 вилл</strong>
               <span>премиум-класса</span>
             </div>
           </div>
-          <div className="feature-item">
+          {/* <div className="feature-item">
             <img src="/images/restaurant.png" alt="Ресторан" />
             <div className="feature-info">
               <strong>200 посадочных мест</strong>
               <span>ресторана</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

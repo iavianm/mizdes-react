@@ -123,10 +123,10 @@ export default function App() {
       {isTokenChecked ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
+          {/* <Route
             path="/spa"
             element={<SpaPage handleTogglePopup={handleTogglePopup} />}
-          />
+          /> */}
           <Route
             path="/houses"
             element={
@@ -136,10 +136,10 @@ export default function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="/restaurant"
             element={<RestaurantPage handleTogglePopup={handleTogglePopup} />}
-          />
+          /> */}
           <Route path="/contacts" element={<ContactsPage />} />
           <Route
             path="/signin"

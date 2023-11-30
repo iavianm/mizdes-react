@@ -1,7 +1,7 @@
 import React from "react";
 import "./VillaCard.css";
 
-const VillaCard = ({ name, area, rooms, description, imageSrc }) => {
+const VillaCard = ({ name, area, rooms, price, description, imageSrc }) => {
   return (
     <div className="card">
       <div className="imageWrapper">
@@ -17,6 +17,7 @@ const VillaCard = ({ name, area, rooms, description, imageSrc }) => {
           <div className="details">
             <span className="area">{area}</span>
             <span className="rooms">{rooms}</span>
+            <span>Цена: {price}</span>
           </div>
         </div>
 
