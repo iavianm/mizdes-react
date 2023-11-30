@@ -81,7 +81,7 @@ export function createBooking(booking) {
       adults: booking.adults,
       children: booking.children,
       phone: booking.phone,
-      email: booking.email,
+      email: booking.email || "",
     }),
   }).then(getResponse);
 }

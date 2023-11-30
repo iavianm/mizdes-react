@@ -102,8 +102,8 @@ export default function App() {
   function handleCreateBooking(booking) {
     setUsePreloader(true);
     createBooking(booking)
-      .then(() => {
-        setBookingMessage("Бронирование создано");
+      .then((res) => {
+        setBookingMessage(res.message);
         handleTogglePopup();
       })
       .catch((error) => {
