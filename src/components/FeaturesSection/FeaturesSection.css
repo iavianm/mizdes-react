@@ -25,6 +25,10 @@
   margin: 20px 0;
   font-size: var(--font-size-p);
   /* max-width: 800px; */
+  text-align: justify;
+  hyphens: auto;
+  word-break: break-word;
+  text-justify: inter-word;
 }
 
 .features-grid {

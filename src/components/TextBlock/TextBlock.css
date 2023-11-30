@@ -19,6 +19,10 @@
   font-size: 1em;
   line-height: 1.4; /* Увеличиваем межстрочный интервал */
   margin-bottom: 1em; /* Увеличиваем отступ между параграфами */
+  text-align: justify;
+  hyphens: auto;
+  word-break: break-word;
+  text-justify: inter-word;
 }
 
 @media screen and (max-width: 768px) {
