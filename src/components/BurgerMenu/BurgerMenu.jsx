@@ -145,6 +145,11 @@ export default function BurgerMenu({
                   Контакты
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/develop" className={"burger__item"}>
+                  В процессе
+                </NavLink>
+              </li>
               {loggedIn && (
                 <li>
                   <NavLink
