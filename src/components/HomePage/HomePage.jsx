@@ -8,7 +8,7 @@ import villasTitles from "../../content/villasSectionTitles.json";
 // import slidersTitles from "../../content/sliderTexts.json";
 // import sliderHomeImages from "../../content/sliderHomeImages.json";
 import InteractiveMap from "../InteractiveMap/InteractiveMap.jsx";
-import LeisureBlock from "../LeisureBlock/LeisureBlock.jsx";
+// import LeisureBlock from "../LeisureBlock/LeisureBlock.jsx";
 import TextBlock from "../TextBlock/TextBlock.jsx";
 import { villas } from "../../content/villasMain.json";
 import { useEffect } from "react";
@@ -35,7 +35,7 @@ export default function HomePage() {
         link={"/spa"}
       /> */}
       <InteractiveMap />
-      <LeisureBlock />
+      {/*<LeisureBlock />*/}
       <TextBlock />
     </section>
   );

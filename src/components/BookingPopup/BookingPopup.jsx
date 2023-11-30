@@ -52,11 +52,11 @@ const BookingPopup = ({
     required: "Обязательное поле",
     minLength: {
       value: 10,
-      message: "Минимальное кол-во символов: 10",
+      message: "Минимальное кол-во символов: 9",
     },
     maxLength: {
-      value: 12,
-      message: "Минимальное кол-во символов: 12",
+      value: 18,
+      message: "Максимальное кол-во символов: 18",
     },
     pattern: {
       value: /^\+?[0-9\- ]+$/,
@@ -109,7 +109,7 @@ const BookingPopup = ({
               >
                 <option value="riviera">Ривьера</option>
                 <option value="grandis">Грандис</option>
-                <option value="highgarden">Хайгарден</option>
+                {/*<option value="highgarden">Хайгарден</option>*/}
                 <option value="any">Любой вариант</option>
               </select>
             </div>
