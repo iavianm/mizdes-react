@@ -1,5 +1,5 @@
 import "./BurgerMenu.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 // export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
 //   return isOpen ? (
@@ -77,10 +77,24 @@ import { Link, NavLink } from "react-router-dom";
 //   ) : null;
 // }
 
-export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
+export default function BurgerMenu({
+  isOpen,
+  onClose,
+  handleTogglePopup,
+  loggedIn,
+  handleLogout,
+}) {
+  const location = useLocation();
+  const isAdminPanel = location.pathname.includes("/admin");
+
+  function handleBurgerLogout() {
+    handleLogout();
+    onClose();
+  }
+
   return (
-    <div className={`burger__overlay ${isOpen ? 'open' : ''}`}>
-      <div className={`burger__menu ${isOpen ? 'open-menu' : 'close-menu'}`}>
+    <div className={`burger__overlay ${isOpen ? "open" : ""}`}>
+      <div className={`burger__menu ${isOpen ? "open-menu" : "close-menu"}`}>
         <button className="burger__close-btn" onClick={onClose}>
           <img src="/images/close-icon.svg"></img>
         </button>
@@ -131,6 +145,17 @@ export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
                   Контакты
                 </NavLink>
               </li>
+              {loggedIn && (
+                <li className={"header__list-items"}>
+                  <NavLink
+                    to="/admin"
+                    className={"burger__item"}
+                    onClick={onClose}
+                  >
+                    Админ панель
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </nav>
           <div>
@@ -140,16 +165,24 @@ export default function BurgerMenu({ isOpen, onClose, handleTogglePopup }) {
                 info@mizdes.com
               </a>
             </div>
-            <button
-              className="header__button burger__reserv-btn"
-              onClick={handleTogglePopup}
-            >
-              Забронировать
-            </button>
+            {loggedIn && isAdminPanel ? (
+              <button
+                className={"header__button burger__reserv-btn"}
+                onClick={handleBurgerLogout}
+              >
+                Выйти
+              </button>
+            ) : (
+              <button
+                className={"header__button burger__reserv-btn"}
+                onClick={handleTogglePopup}
+              >
+                Забронировать
+              </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 }
-

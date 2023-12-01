@@ -100,6 +100,8 @@ function Header({ handleTogglePopup, loggedIn, handleLogout }) {
             isOpen={burgerOpened}
             onClose={handleOpenBurger}
             handleTogglePopup={handleTogglePopup}
+            loggedIn={loggedIn}
+            handleLogout={handleLogout}
           />
         </>
       )}
