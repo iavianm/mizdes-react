@@ -1,9 +1,21 @@
 import housesPopupContent from "../../content/housesPopupContent.json";
 import "./HousesPopup.css";
 
-export default function HousesPopup({ isVisiblie, selectedHouse, onClose }) {
+export default function HousesPopup({
+  isVisiblie,
+  selectedHouse,
+  onClose,
+  handleTogglePopup,
+  handleChangeVillas,
+}) {
   const { scheme, option, items, texts, quantity } =
     housesPopupContent[selectedHouse] || housesPopupContent["riviera"];
+
+  const handleButtonClick = () => {
+    handleTogglePopup();
+    handleChangeVillas(selectedHouse);
+    onClose();
+  };
 
   return (
     <div className={`popup-overlay ${isVisiblie ? "popup-open" : ""}`}>
@@ -50,7 +62,9 @@ export default function HousesPopup({ isVisiblie, selectedHouse, onClose }) {
             <div className="popup-quantitys">
               <span className="popup-quantity">{quantity}</span>
             </div>
-            <button className="popup-btn">Забронировать</button>
+            <button className="popup-btn" onClick={handleButtonClick}>
+              Забронировать
+            </button>
           </div>
         </div>
       </div>
