@@ -24,8 +24,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80%; /* Фиксированная ширина попапа */
-  height: 90%;
+  max-width: 80%; /* Фиксированная ширина попапа */
+  max-height: 90%;
   /*max-width: 90%; !* Адаптация к ширине экрана *!*/
   background: white;
   padding: 20px;
@@ -77,6 +77,7 @@
   max-height: 60px;
   /* Подстройте в соответствии с вашими нуждами */
   margin-bottom: 20px; /* Отступ между полями даты */
+  flex: 1;
 }
 
 /* Кнопка отправки */
@@ -224,11 +225,20 @@
   margin: 0 0 20px;
 }
 
+.form-group-group {
+  display: flex;
+  gap: 20px;
+}
+
 /* Адаптация к мобильным устройствам */
 @media screen and (max-width: 768px) {
   .booking-popup {
     width: 90%;
     padding: 10px;
+  }
+
+  .form-group-group {
+    display: block;
   }
 
   .form-control,

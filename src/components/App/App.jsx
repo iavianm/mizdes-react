@@ -19,6 +19,7 @@ import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
 import Admin from "../Admin/Admin.jsx";
+import { Snackbar } from "@mui/material";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
@@ -30,6 +31,12 @@ export default function App() {
   const [isTokenChecked, setIsTokenChecked] = useState(false);
   const [bookingMessage, setBookingMessage] = useState("");
   const [villaType, setVillaType] = useState("any");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   // добвавила в другой попап тоже запрет прокрутки фона
   function toggleBodyOverflow() {
@@ -103,12 +110,16 @@ export default function App() {
     setUsePreloader(true);
     createBooking(booking)
       .then((res) => {
-        setBookingMessage(res.message);
+        // setBookingMessage(res.message);
+        setSnackbarMessage(res.message);
+        setSnackbarOpen(true);
         handleTogglePopup();
       })
       .catch((error) => {
         console.log(error);
-        setBookingMessage("Ошибка создания бронирования, попробуйте снова");
+        // setBookingMessage("Ошибка создания бронирования, попробуйте снова");
+        setSnackbarMessage("Ошибка при создании бронирования!");
+        setSnackbarOpen(true);
       })
       .finally(() => setUsePreloader(false));
   }
@@ -172,6 +183,33 @@ export default function App() {
         handleTogglePopup={handleTogglePopup}
         handleCreateBooking={handleCreateBooking}
         villaType={villaType}
+      />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        ContentProps={{
+          sx: {
+            backgroundColor:
+              snackbarMessage === "Ошибка при создании бронирования!"
+                ? "red"
+                : "lightgreen",
+            color: "#fff",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            width: "100%",
+            justifyContent: "center",
+          },
+        }}
+        sx={{
+          top: "10%",
+          transform: "translateY(-50%)",
+        }}
       />
     </main>
   );

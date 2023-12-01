@@ -64,6 +64,14 @@ const BookingPopup = ({
     },
   };
 
+  const errorEmail = {
+    type: String,
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
+      message: "Некорректный E-mail",
+    },
+  };
+
   const handleSelectChange = (e) => {
     const selectedValue = e.target.value;
     setCottageType(selectedValue);
@@ -113,103 +121,108 @@ const BookingPopup = ({
                 <option value="any">Любой вариант</option>
               </select>
             </div>
-            <div className="form-group-date">
-              <input
-                {...register("arrival_date")}
-                type="text"
-                id="arrival-date"
-                name="arrival_date"
-                className="form-control"
-                placeholder="Дата заезда"
-                onFocus={(e) => {
-                  e.target.type = "date";
-                  e.target.placeholder = "";
-                }}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.type = "text";
-                    e.target.placeholder = "Дата заезда";
-                  }
-                }}
-              />
-            </div>
-            <div className="form-group-date">
-              <input
-                type="text"
-                id="departure-date"
-                name="departure_date"
-                {...register("departure_date")}
-                className="form-control"
-                placeholder="Дата выезда"
-                onFocus={(e) => {
-                  e.target.type = "date";
-                  e.target.placeholder = "";
-                }}
-                onBlur={(e) => {
-                  if (!e.target.value) {
-                    e.target.type = "text";
-                    e.target.placeholder = "Дата выезда";
-                  }
-                }}
-              />
-            </div>
-            <div className="form-group quantity-selector">
-              <label className="quantity-label">Взрослые</label>
-              <div className="quantity-controls">
-                <button
-                  type="button"
-                  className="quantity-minus"
-                  onClick={() => handleSetAdults(adults > 0 ? adults - 1 : 0)}
-                >
-                  -
-                </button>
+            <div className={"form-group-group"}>
+              <div className="form-group-date">
+                <input
+                  {...register("arrival_date")}
+                  type="text"
+                  id="arrival-date"
+                  name="arrival_date"
+                  className="form-control"
+                  placeholder="Дата заезда"
+                  onFocus={(e) => {
+                    e.target.type = "date";
+                    e.target.placeholder = "";
+                  }}
+                  onBlur={(e) => {
+                    if (!e.target.value) {
+                      e.target.type = "text";
+                      e.target.placeholder = "Дата заезда";
+                    }
+                  }}
+                />
+              </div>
+              <div className="form-group-date">
                 <input
                   type="text"
-                  id="adults"
-                  name="adults"
-                  {...register("adults")}
-                  className="quantity-input"
-                  readOnly
-                  value={adults} // Здесь должно быть состояние из вашего компонента
+                  id="departure-date"
+                  name="departure_date"
+                  {...register("departure_date")}
+                  className="form-control"
+                  placeholder="Дата выезда"
+                  onFocus={(e) => {
+                    e.target.type = "date";
+                    e.target.placeholder = "";
+                  }}
+                  onBlur={(e) => {
+                    if (!e.target.value) {
+                      e.target.type = "text";
+                      e.target.placeholder = "Дата выезда";
+                    }
+                  }}
                 />
-                <button
-                  type="button"
-                  className="quantity-plus"
-                  onClick={() => handleSetAdults(adults + 1)}
-                >
-                  +
-                </button>
               </div>
             </div>
 
-            <div className="form-group quantity-selector">
-              <label className="quantity-label">Дети</label>
-              <div className="quantity-controls">
-                <button
-                  type="button"
-                  className="quantity-minus"
-                  onClick={() =>
-                    handleSetChildren(children > 0 ? children - 1 : 0)
-                  }
-                >
-                  -
-                </button>
-                <input
-                  type="text"
-                  id="children"
-                  name="children"
-                  {...register("children")}
-                  className="quantity-input"
-                  readOnly
-                  value={children} // И здесь состояние из вашего компонента
-                />
-                <button
-                  type="button"
-                  className="quantity-plus"
-                  onClick={() => handleSetChildren(children + 1)}
-                >
-                  +
-                </button>
+            <div className={"form-group-group"}>
+              <div className="form-group quantity-selector">
+                <label className="quantity-label">Взрослые</label>
+                <div className="quantity-controls">
+                  <button
+                    type="button"
+                    className="quantity-minus"
+                    onClick={() => handleSetAdults(adults > 0 ? adults - 1 : 0)}
+                  >
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    id="adults"
+                    name="adults"
+                    {...register("adults")}
+                    className="quantity-input"
+                    readOnly
+                    value={adults} // Здесь должно быть состояние из вашего компонента
+                  />
+                  <button
+                    type="button"
+                    className="quantity-plus"
+                    onClick={() => handleSetAdults(adults + 1)}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="form-group quantity-selector">
+                <label className="quantity-label">Дети</label>
+                <div className="quantity-controls">
+                  <button
+                    type="button"
+                    className="quantity-minus"
+                    onClick={() =>
+                      handleSetChildren(children > 0 ? children - 1 : 0)
+                    }
+                  >
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    id="children"
+                    name="children"
+                    {...register("children")}
+                    className="quantity-input"
+                    readOnly
+                    value={children} // И здесь состояние из вашего компонента
+                  />
+                  <button
+                    type="button"
+                    className="quantity-plus"
+                    onClick={() => handleSetChildren(children + 1)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <div className="form-group">
@@ -222,21 +235,43 @@ const BookingPopup = ({
                 className="form-control"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="phone">Ваш телефон</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                {...register("phone", errorPhone)}
-                className="form-control"
-                placeholder="+7 999 888 77 66"
-              />
-              <span
-                className={`input__error ${errors ? "input__error-show" : ""}`}
-              >
-                {errors ? errors["phone"]?.message || "" : ""}
-              </span>
+            <div className={"form-group-group"}>
+              <div className="form-group">
+                <label htmlFor="phone">Ваш телефон</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  {...register("phone", errorPhone)}
+                  className="form-control"
+                  placeholder="+7 999 888 77 66"
+                />
+                <span
+                  className={`input__error ${
+                    errors ? "input__error-show" : ""
+                  }`}
+                >
+                  {errors ? errors["phone"]?.message || "" : ""}
+                </span>
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Ваш email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  {...register("email", errorEmail)}
+                  className="form-control"
+                  placeholder="email@gmail.com"
+                />
+                <span
+                  className={`input__error ${
+                    errors ? "input__error-show" : ""
+                  }`}
+                >
+                  {errors ? errors["email"]?.message || "" : ""}
+                </span>
+              </div>
             </div>
             <button
               type="submit"

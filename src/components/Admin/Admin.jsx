@@ -56,6 +56,12 @@ export default function Admin() {
     setOpenDialog(false);
   };
 
+  function sortBookingsByNewest(bookingsArray) {
+    return bookingsArray.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+    );
+  }
+
   function handleDeleteBooking() {
     removeBooking(selectedId)
       .then(() => {
@@ -68,14 +74,16 @@ export default function Admin() {
   useEffect(() => {
     getBookings()
       .then((res) => {
-        setAllBookings(res);
+        const sortedBookings = sortBookingsByNewest(res);
+        setAllBookings(sortedBookings);
       })
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
     if (allBookings) {
-      setRows(normalizeBookings(allBookings));
+      const sortedBookings = sortBookingsByNewest(allBookings);
+      setRows(normalizeBookings(sortedBookings));
     }
   }, [allBookings]);
 
