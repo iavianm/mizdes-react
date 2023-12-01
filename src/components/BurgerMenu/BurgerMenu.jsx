@@ -161,8 +161,8 @@ export default function BurgerMenu({
           <div>
             <div className="burger__description">
               <p className="burger__number">+7 921 909 57 00</p>
-              <a className="burger__link" href="mailto:info@mizdes.com">
-                info@mizdes.com
+              <a className="burger__link" href="mailto:mizdesclub@yandex.ru">
+                mizdesclub@yandex.ru
               </a>
             </div>
             {loggedIn && isAdminPanel ? (
