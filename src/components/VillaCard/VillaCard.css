@@ -24,7 +24,7 @@ img {
 .details {
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
+  font-size: 0.9rem;
   gap: 30px;
   /*margin-bottom: 1rem;*/
 }
@@ -39,6 +39,7 @@ img {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid black;
+  gap: 10px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -47,5 +48,30 @@ img {
   }
   .description {
     font-size: 0.9rem !important;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .details {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .details {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .details {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .details {
+    font-size: 0.6rem;
   }
 }

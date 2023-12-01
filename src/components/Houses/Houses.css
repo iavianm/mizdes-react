@@ -16,12 +16,14 @@
   font-size: var(--font-size-h2);
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 .villa-specs {
   display: flex;
   gap: 15px;
-  font-size: 1.2em;
+  font-size: 1rem;
+  flex: 1;
 }
 
 .villa-description {
@@ -224,6 +226,7 @@
 
   .villa-title {
     font-size: var(--fz-h2-768);
+    margin-bottom: 15px;
   }
 
   .villa-text {
@@ -289,5 +292,11 @@
 
   .buttons-container {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .villa-specs {
+    font-size: 0.8rem;
   }
 }
