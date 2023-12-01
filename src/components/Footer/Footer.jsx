@@ -21,10 +21,8 @@ const Footer = () => {
             <li>
               <Link to={"/restaurant"}>Ресторан</Link>
             </li> */}
-             <li>
-              <Link to="/contacts">
-                Контакты
-              </Link>
+            <li>
+              <Link to="/contacts">Контакты</Link>
             </li>
           </ul>
           <Link to="/contacts" className="logo-link">
@@ -47,7 +45,7 @@ const Footer = () => {
               <div className={"footer-address-links"}>
                 <a href="tel:+79219095700">+7 921 909 57 00</a>
 
-                <a href="mailto:info@mizdes.com">info@mizdes.com</a>
+                <a href="mailto:mizdesclub@yandex.ru">mizdesclub@yandex.ru</a>
               </div>
             </address>
           </div>
