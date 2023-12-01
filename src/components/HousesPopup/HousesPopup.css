@@ -55,7 +55,7 @@
 }
 
 .popup-schemes {
-  flex: 1;
+  flex: 2;
   /* justify-content: center; */
 }
 
@@ -105,6 +105,10 @@
   font-size: 16px;
   margin: 0;
   padding-bottom: 25px;
+  text-align: justify;
+  hyphens: auto;
+  word-break: break-word;
+  text-justify: inter-word;
 }
 
 .popup-text:last-of-type {
@@ -164,7 +168,7 @@
   }
 
   .popup-scheme {
-    max-width: 40%;
+    max-width: 50%;
     transform: rotate(90deg);
   }
 
@@ -214,7 +218,7 @@
   }
 
   .popup-scheme {
-    max-width: 80%;
+    max-width: 60%; /* Занимать всю ширину контейнера */
   }
 
   .popup-item {

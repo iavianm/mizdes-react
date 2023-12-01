@@ -29,7 +29,6 @@ export default function App() {
   const [useMessage, setUseMessage] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [isTokenChecked, setIsTokenChecked] = useState(false);
-  const [bookingMessage, setBookingMessage] = useState("");
   const [villaType, setVillaType] = useState("any");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
