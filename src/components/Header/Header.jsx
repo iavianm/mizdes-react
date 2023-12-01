@@ -1,11 +1,14 @@
 import "./Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useState, useEffect } from "react";
 
-function Header({ handleTogglePopup }) {
+function Header({ handleTogglePopup, loggedIn, handleLogout }) {
   const [burgerOpened, setBurgerOpened] = useState(false);
   const [windowWidth, setWindowWidth] = useState(undefined);
+  const location = useLocation();
+
+  const isAdminPanel = location.pathname.includes("/admin");
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,10 +62,23 @@ function Header({ handleTogglePopup }) {
                 Контакты
               </NavLink>
             </li>
+            {loggedIn && (
+              <li className={"header__list-items"}>
+                <NavLink to="/admin" className={"header__list-item"}>
+                  Административная панель
+                </NavLink>
+              </li>
+            )}
           </ul>
-          <button className={"header__button"} onClick={handleTogglePopup}>
-            Забронировать
-          </button>
+          {loggedIn && isAdminPanel ? (
+            <button className={"header__button"} onClick={handleLogout}>
+              Выйти
+            </button>
+          ) : (
+            <button className={"header__button"} onClick={handleTogglePopup}>
+              Забронировать
+            </button>
+          )}
         </>
       ) : (
         <>

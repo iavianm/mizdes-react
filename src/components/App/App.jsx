@@ -22,7 +22,7 @@ import Admin from "../Admin/Admin.jsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [usePreloader, setUsePreloader] = useState(false);
   const navigate = useNavigate();
   const [useMessage, setUseMessage] = useState("");
@@ -119,7 +119,11 @@ export default function App() {
 
   return (
     <main className={"main"}>
-      <Header handleTogglePopup={handleTogglePopup} />
+      <Header
+        handleTogglePopup={handleTogglePopup}
+        loggedIn={loggedIn}
+        handleLogout={handleLogout}
+      />
       {isTokenChecked ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -154,11 +158,7 @@ export default function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRouteElement
-                loggedIn={loggedIn}
-                element={Admin}
-                handleLogout={handleLogout}
-              />
+              <ProtectedRouteElement loggedIn={loggedIn} element={Admin} />
             }
           />
           <Route path="*" element={<NotFound />} />

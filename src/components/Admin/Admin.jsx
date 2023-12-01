@@ -2,11 +2,20 @@ import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./Admin.css";
 import { getBookings, removeBooking } from "../../utils/api.js";
-import { Button } from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+} from "@mui/material";
 
 export default function Admin() {
   const [rows, setRows] = useState([]);
   const [allBookings, setAllBookings] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
   const columns = [
     { field: "col1", headerName: "Имя", flex: 1, minWidth: 150 },
@@ -21,14 +30,14 @@ export default function Admin() {
       field: "col9",
       headerName: "",
       flex: 1,
-      minWidth: 30,
+      minWidth: 100,
       renderCell: (cellValues) => {
         return (
           <Button
             variant="contained"
             color="secondary"
             onClick={() => {
-              handleDeleteBooking(cellValues.id);
+              handleDialogOpen(cellValues.id);
             }}
           >
             Удалить
@@ -38,10 +47,20 @@ export default function Admin() {
     },
   ];
 
-  function handleDeleteBooking(id) {
-    removeBooking(id)
+  const handleDialogOpen = (id) => {
+    setSelectedId(id);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  function handleDeleteBooking() {
+    removeBooking(selectedId)
       .then(() => {
-        setAllBookings((state) => state.filter((el) => el._id !== id));
+        setAllBookings((state) => state.filter((el) => el._id !== selectedId));
+        handleDialogClose();
       })
       .catch((error) => console.log(error));
   }
@@ -81,6 +100,29 @@ export default function Admin() {
       <div className="admin-container">
         <DataGrid rows={rows} columns={columns} className="admin-grid" />
       </div>
+      <Dialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Подтвердите действие"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Вы уверены, что хотите удалить эту запись?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            Отмена
+          </Button>
+          <Button onClick={handleDeleteBooking} color="secondary" autoFocus>
+            Удалить
+          </Button>
+        </DialogActions>
+      </Dialog>
     </section>
   );
 }
