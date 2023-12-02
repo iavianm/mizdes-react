@@ -146,7 +146,7 @@ export default function BurgerMenu({
                 </NavLink>
               </li>
               {loggedIn && (
-                <li className={"header__list-items"}>
+                <li>
                   <NavLink
                     to="/admin"
                     className={"burger__item"}

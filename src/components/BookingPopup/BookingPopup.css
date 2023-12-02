@@ -31,6 +31,7 @@
   padding: 20px;
   border-radius: 10px; /* Скругление углов */
   overflow: auto;
+  box-sizing: border-box;
 }
 
 .active {
@@ -54,6 +55,7 @@
 /* Группа формы */
 .form-group {
   margin-bottom: 20px; /* Отступ между полями формы */
+  position: relative;
 }
 
 /* Управление полями ввода */
@@ -228,6 +230,56 @@
 .form-group-group {
   display: flex;
   gap: 20px;
+}
+
+.dropdown-menu {
+  background-color: #fff; /* Белый фон */
+  border: 1px solid #ddd; /* Граница */
+  /*border-radius: 4px; !* Скругление углов *!*/
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Тень */
+  padding: 10px; /* Внутренний отступ */
+  position: absolute; /* Абсолютное позиционирование */
+  width: 100%; /* Ширина соответствует родительскому элементу */
+  z-index: 100; /* Поверх других элементов */
+  max-height: 300px; /* Максимальная высота */
+  overflow-y: auto; /* Прокрутка, если содержимое выходит за пределы макс. высоты */
+  box-sizing: border-box;
+}
+
+/* Стилизация каждого элемента списка чекбоксов */
+.checkbox-item {
+  margin: 5px 0;
+}
+
+/* Скрыть выпадающее меню по умолчанию */
+.dropdown-menu.hidden {
+  display: none;
+}
+
+.dropdown-button {
+  background-color: #eee; /* Светлый фон, как у input */
+  border: 1px solid #ccc; /* Граница, как у input */
+  border-radius: 4px; /* Скругленные углы */
+  padding: 12px; /* Внутренние отступы */
+  text-align: left; /* Текст выровненный по левому краю */
+  cursor: pointer; /* Показать, что элемент кликабельный */
+  margin-bottom: 30px;
+}
+
+/* Стили для лейбла, который служит кнопкой для открытия/закрытия выпадающего списка */
+.dropdown-label {
+  cursor: pointer; /* Стиль курсора, указывающий на интерактивность */
+  display: inline-block; /* Блок с возможностью установки отступов */
+  margin-bottom: 5px; /* Отступ снизу */
+}
+
+.checkbox-item-input {
+  margin-right: 20px;
+}
+
+.checkbox-item-label {
+  text-shadow: none;
+  filter: none;
 }
 
 /* Адаптация к мобильным устройствам */

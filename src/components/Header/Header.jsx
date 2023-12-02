@@ -65,7 +65,7 @@ function Header({ handleTogglePopup, loggedIn, handleLogout }) {
             {loggedIn && (
               <li className={"header__list-items"}>
                 <NavLink to="/admin" className={"header__list-item"}>
-                  Административная панель
+                  Админ панель
                 </NavLink>
               </li>
             )}

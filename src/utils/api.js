@@ -1,5 +1,5 @@
-// export const BASE_URL = "http://localhost:3000/api";
-export const BASE_URL = "https://www.mizdes.com/api";
+export const BASE_URL = "http://localhost:3000/api";
+// export const BASE_URL = "https://www.mizdes.com/api";
 
 function getResponse(res) {
   if (!res.ok) {
@@ -82,6 +82,7 @@ export function createBooking(booking) {
       children: booking.children,
       phone: booking.phone,
       email: booking.email || "",
+      additionalOptions: booking.additionalOptions || [],
     }),
   }).then(getResponse);
 }

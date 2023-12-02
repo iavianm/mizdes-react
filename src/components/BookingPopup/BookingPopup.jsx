@@ -1,5 +1,5 @@
 import "./BookingPopup.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthForm from "../AuthForm/AuthForm.jsx";
 
 const BookingPopup = ({
@@ -11,8 +11,36 @@ const BookingPopup = ({
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [cottageType, setCottageType] = useState("any");
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const dropdownRef = useRef(null);
   const { register, errors, isValid, handleSubmit, reset, setValue } =
     AuthForm();
+
+  useEffect(() => {
+    // Функция для закрытия выпадающего списка при клике вне его
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowCheckboxes(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleCheckboxChange = (event) => {
+    const optionValue = event.target.value;
+    setSelectedOptions(
+      event.target.checked
+        ? [...selectedOptions, optionValue]
+        : selectedOptions.filter((option) => option !== optionValue),
+    );
+  };
+
+  const toggleCheckboxes = () => setShowCheckboxes(!showCheckboxes);
 
   const handleSetAdults = (newAdults) => {
     setAdults(newAdults);
@@ -29,6 +57,7 @@ const BookingPopup = ({
     if (isVisible) {
       setAdults(1);
       setChildren(0);
+      setSelectedOptions([]);
       reset();
     }
   }
@@ -39,10 +68,15 @@ const BookingPopup = ({
   }, [villaType]);
 
   const onSubmit = (data) => {
-    handleCreateBooking(data);
+    const bookingData = {
+      ...data,
+      additionalOptions: selectedOptions,
+    };
+    handleCreateBooking(bookingData);
     if (isVisible) {
       setAdults(1);
       setChildren(0);
+      setSelectedOptions([]);
       reset();
     }
   };
@@ -120,6 +154,41 @@ const BookingPopup = ({
                 {/*<option value="highgarden">Хайгарден</option>*/}
                 <option value="any">Любой вариант</option>
               </select>
+            </div>
+            <div className="form-group" ref={dropdownRef}>
+              <div className="dropdown-button" onClick={toggleCheckboxes}>
+                Дополнительные опции
+              </div>
+
+              <div
+                className={`dropdown-menu ${showCheckboxes ? "" : "hidden"}`}
+              >
+                {[
+                  "мангал",
+                  "квадроцикл",
+                  "эндуро",
+                  "снегоход",
+                  "собака",
+                  "самовар",
+                  "ранний заезд",
+                  "поздний заезд",
+                  "ранний выезд",
+                  "поздний выезд",
+                ].map((option) => (
+                  <div key={option} className="checkbox-item">
+                    <label className={"checkbox-item-label"}>
+                      <input
+                        className={"checkbox-item-input"}
+                        type="checkbox"
+                        value={option}
+                        checked={selectedOptions.includes(option)}
+                        onChange={handleCheckboxChange}
+                      />
+                      {option.charAt(0).toUpperCase() + option.slice(1)}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className={"form-group-group"}>
               <div className="form-group-date">

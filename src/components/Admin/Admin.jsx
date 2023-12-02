@@ -19,15 +19,16 @@ export default function Admin() {
 
   const columns = [
     { field: "col1", headerName: "Имя", flex: 1, minWidth: 150 },
-    { field: "col2", headerName: "Номер телефона", flex: 1, minWidth: 150 },
+    { field: "col2", headerName: "Телефон", flex: 1, minWidth: 150 },
     { field: "col3", headerName: "Email", flex: 1, minWidth: 150 },
-    { field: "col4", headerName: "Коттедж", flex: 1, minWidth: 100 },
-    { field: "col5", headerName: "Дата заезда", flex: 1, minWidth: 100 },
-    { field: "col6", headerName: "Дата выезда", flex: 1, minWidth: 100 },
-    { field: "col7", headerName: "Кол-во взрослых", flex: 1, minWidth: 50 },
-    { field: "col8", headerName: "Кол-во детей", flex: 1, minWidth: 50 },
+    { field: "col4", headerName: "Коттедж", flex: 1, minWidth: 120 },
+    { field: "col5", headerName: "Доп.услуги", flex: 1, minWidth: 150 },
+    { field: "col6", headerName: "Дата заезда", flex: 1, minWidth: 150 },
+    { field: "col7", headerName: "Дата выезда", flex: 1, minWidth: 150 },
+    { field: "col8", headerName: "Взрослые", flex: 1, minWidth: 120 },
+    { field: "col9", headerName: "Дети", flex: 1, minWidth: 120 },
     {
-      field: "col9",
+      field: "col10",
       headerName: "",
       flex: 1,
       minWidth: 100,
@@ -95,10 +96,11 @@ export default function Admin() {
         col2: el.phone,
         col3: el.email,
         col4: el.cottageType,
-        col5: el.arrivalDate,
-        col6: el.departureDate,
-        col7: el.adults,
-        col8: el.children,
+        col5: el.additionalOptions,
+        col6: el.arrivalDate,
+        col7: el.departureDate,
+        col8: el.adults,
+        col9: el.children,
       };
     });
   }
@@ -106,7 +108,16 @@ export default function Admin() {
   return (
     <section className="admin">
       <div className="admin-container">
-        <DataGrid rows={rows} columns={columns} className="admin-grid" />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSizeOptions={[5, 10, 25]}
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize: 10, page: 0 },
+            },
+          }}
+        />
       </div>
       <Dialog
         open={openDialog}
