@@ -1,5 +1,5 @@
 import Hero from "../Hero/Hero";
-import LeisureBlock from '../LeisureBlock/LeisureBlock';
+import LeisureBlock from "../LeisureBlock/LeisureBlock";
 import "./DevelopPage.css";
 import heroContent from "../../content/heroContent.json";
 import { restaurant } from "../../content/sliderRestaurantImages.json";
