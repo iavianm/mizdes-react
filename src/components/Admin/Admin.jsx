@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./Admin.css";
-import { getBookings, removeBooking } from "../../utils/api.js";
+import { getBookings, removeBooking, updateBooking } from "../../utils/api.js";
 import {
   Dialog,
   DialogActions,
@@ -10,12 +10,20 @@ import {
   DialogTitle,
   Button,
 } from "@mui/material";
+import BookingDetailsDialog from "../BookingDetailsDialog/BookingDetailsDialog.jsx";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import BookingPopup from "../BookingPopup/BookingPopup.jsx";
 
-export default function Admin() {
+export default function Admin({ setUsePreloader, handleOpenSnackbar }) {
   const [rows, setRows] = useState([]);
   const [allBookings, setAllBookings] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
 
   const columns = [
     { field: "col1", headerName: "Имя", flex: 1, minWidth: 150 },
@@ -25,28 +33,73 @@ export default function Admin() {
     { field: "col5", headerName: "Доп.услуги", flex: 1, minWidth: 150 },
     { field: "col6", headerName: "Дата заезда", flex: 1, minWidth: 150 },
     { field: "col7", headerName: "Дата выезда", flex: 1, minWidth: 150 },
-    { field: "col8", headerName: "Взрослые", flex: 1, minWidth: 120 },
-    { field: "col9", headerName: "Дети", flex: 1, minWidth: 120 },
+    { field: "col8", headerName: "Взрослые", flex: 1, minWidth: 100 },
+    { field: "col9", headerName: "Дети", flex: 1, minWidth: 100 },
     {
       field: "col10",
       headerName: "",
       flex: 1,
-      minWidth: 100,
+      minWidth: 150,
       renderCell: (cellValues) => {
         return (
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              handleDialogOpen(cellValues.id);
-            }}
-          >
-            Удалить
-          </Button>
+          <div style={{ display: "flex", gap: "10px" }}>
+            {" "}
+            <Button
+              className="button-icon"
+              variant="contained"
+              color="success"
+              onClick={() => handleViewBooking(cellValues.id)}
+              startIcon={<VisibilityIcon className="custom-icon" />} // Уменьшение размера иконки
+              data-button="view"
+            ></Button>
+            <Button
+              size="small"
+              className="button-icon"
+              variant="contained"
+              color="primary"
+              onClick={() => handleEditBooking(cellValues.id)}
+              startIcon={<EditIcon className="custom-icon" />}
+              data-button="edit"
+            ></Button>
+            <Button
+              variant="contained"
+              className="button-icon"
+              color="secondary"
+              onClick={() => handleDialogOpen(cellValues.id)}
+              startIcon={<DeleteIcon className="custom-icon" />}
+              data-button="delete"
+              size="small"
+            ></Button>
+          </div>
         );
       },
     },
   ];
+
+  const handleRowClick = (params, event) => {
+    if (event.target.closest("[data-button]")) {
+      return;
+    }
+
+    const bookingDetails = allBookings.find(
+      (booking) => booking._id === params.id,
+    );
+    setSelectedBooking(bookingDetails);
+    setOpenDetailsDialog(true);
+  };
+
+  const handleViewBooking = (id) => {
+    const bookingDetails = allBookings.find((booking) => booking._id === id);
+
+    setSelectedBooking(bookingDetails);
+    setOpenDetailsDialog(true);
+  };
+
+  const handleEditBooking = (id) => {
+    const bookingDetails = allBookings.find((booking) => booking._id === id);
+    setSelectedBooking(bookingDetails);
+    setOpenPopup(true);
+  };
 
   const handleDialogOpen = (id) => {
     setSelectedId(id);
@@ -72,6 +125,14 @@ export default function Admin() {
       .catch((error) => console.log(error));
   }
 
+  const handleUpdateBookingState = (updatedBooking) => {
+    setAllBookings((currentBookings) =>
+      currentBookings.map((booking) =>
+        booking._id === updatedBooking._id ? updatedBooking : booking,
+      ),
+    );
+  };
+
   useEffect(() => {
     getBookings()
       .then((res) => {
@@ -88,6 +149,16 @@ export default function Admin() {
     }
   }, [allBookings]);
 
+  function toggleBodyOverflow() {
+    const body = document.body;
+    body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
+  }
+
+  function handleTogglePopup() {
+    setOpenPopup(!openPopup);
+    toggleBodyOverflow();
+  }
+
   function normalizeBookings(bookingsArray) {
     return bookingsArray.map((el) => {
       return {
@@ -96,13 +167,28 @@ export default function Admin() {
         col2: el.phone,
         col3: el.email,
         col4: el.cottageType,
-        col5: el.additionalOptions,
+        col5: el.additionalOptions.join(", "),
         col6: el.arrivalDate,
         col7: el.departureDate,
         col8: el.adults,
         col9: el.children,
       };
     });
+  }
+
+  function handleUpdateBooking(id, booking) {
+    setUsePreloader(true);
+    updateBooking(id, booking)
+      .then((res) => {
+        handleOpenSnackbar(res.message);
+        handleTogglePopup();
+        handleUpdateBookingState(res.booking);
+      })
+      .catch((error) => {
+        console.log(error);
+        handleOpenSnackbar("Ошибка при обновлении бронирования!");
+      })
+      .finally(() => setUsePreloader(false));
   }
 
   return (
@@ -117,6 +203,7 @@ export default function Admin() {
               paginationModel: { pageSize: 10, page: 0 },
             },
           }}
+          onRowClick={handleRowClick}
         />
       </div>
       <Dialog
@@ -142,6 +229,17 @@ export default function Admin() {
           </Button>
         </DialogActions>
       </Dialog>
+      <BookingDetailsDialog
+        open={openDetailsDialog}
+        onClose={() => setOpenDetailsDialog(false)}
+        booking={selectedBooking}
+      />
+      <BookingPopup
+        isVisible={openPopup}
+        handleUpdateBooking={handleUpdateBooking}
+        handleTogglePopup={handleTogglePopup}
+        initialBooking={selectedBooking}
+      />
     </section>
   );
 }

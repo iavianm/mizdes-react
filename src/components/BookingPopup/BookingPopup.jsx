@@ -6,19 +6,23 @@ const BookingPopup = ({
   isVisible,
   handleTogglePopup,
   handleCreateBooking,
+  handleUpdateBooking,
   villaType,
+  initialBooking,
 }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [cottageType, setCottageType] = useState("any");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const [arrivalDate, setArrivalDate] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [name, setName] = useState("");
   const dropdownRef = useRef(null);
-  const { register, errors, isValid, handleSubmit, reset, setValue } =
-    AuthForm();
+  const { register, errors, isValid, handleSubmit, reset, setValue, trigger } =
+    AuthForm({ defaultValues: initialBooking });
 
   useEffect(() => {
-    // Функция для закрытия выпадающего списка при клике вне его
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowCheckboxes(false);
@@ -30,6 +34,42 @@ const BookingPopup = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (isVisible && initialBooking) {
+      Object.keys(initialBooking).forEach((key) => {
+        if (key === "cottageType") {
+          setCottageType(initialBooking[key]);
+        }
+        if (key === "name") {
+          setName(initialBooking[key]);
+        }
+
+        if (key === "additionalOptions") {
+          setSelectedOptions(initialBooking[key]);
+        }
+
+        if (key === "adults") {
+          setAdults(initialBooking[key]);
+        }
+
+        if (key === "children") {
+          setChildren(initialBooking[key]);
+        }
+
+        if (key === "arrivalDate") {
+          setArrivalDate(initialBooking[key]);
+        }
+
+        if (key === "departureDate") {
+          setDepartureDate(initialBooking[key]);
+        }
+
+        setValue(key, initialBooking[key]);
+      });
+      trigger();
+    }
+  }, [initialBooking, isVisible, setValue, trigger]);
 
   const handleCheckboxChange = (event) => {
     const optionValue = event.target.value;
@@ -54,7 +94,7 @@ const BookingPopup = ({
 
   function onClose() {
     handleTogglePopup();
-    if (isVisible) {
+    if (!isVisible) {
       setAdults(1);
       setChildren(0);
       setSelectedOptions([]);
@@ -68,12 +108,22 @@ const BookingPopup = ({
   }, [villaType]);
 
   const onSubmit = (data) => {
+    console.log(data);
+
     const bookingData = {
       ...data,
-      additionalOptions: selectedOptions,
+      cottage_type: cottageType,
+      additional_options: selectedOptions,
+      arrival_date: arrivalDate,
+      departure_date: departureDate,
     };
-    handleCreateBooking(bookingData);
-    if (isVisible) {
+
+    if (initialBooking) {
+      handleUpdateBooking(initialBooking._id, bookingData);
+    } else {
+      handleCreateBooking(bookingData);
+    }
+    if (!isVisible) {
       setAdults(1);
       setChildren(0);
       setSelectedOptions([]);
@@ -122,7 +172,11 @@ const BookingPopup = ({
           <span className="close-button" onClick={onClose}>
             &times;
           </span>
-          <h2 className={"booking-popup-title"}>Бронирование</h2>
+          <h2 className={"booking-popup-title"}>
+            {initialBooking
+              ? "Редактировать бронирование"
+              : "Создать бронирование"}
+          </h2>
           <p className={"booking-popup-about"}>
             Только тем, кто присоединиться к Мы ЗДЕСЬ team с самого начала будет
             предоставлена наша накопительная бонусная карта со скидкой 5% при
@@ -195,10 +249,12 @@ const BookingPopup = ({
                 <input
                   {...register("arrival_date")}
                   type="text"
+                  value={arrivalDate}
                   id="arrival-date"
                   name="arrival_date"
                   className="form-control"
                   placeholder="Дата заезда"
+                  onChange={(e) => setArrivalDate(e.target.value)}
                   onFocus={(e) => {
                     e.target.type = "date";
                     e.target.placeholder = "";
@@ -217,8 +273,10 @@ const BookingPopup = ({
                   id="departure-date"
                   name="departure_date"
                   {...register("departure_date")}
+                  value={departureDate}
                   className="form-control"
                   placeholder="Дата выезда"
+                  onChange={(e) => setDepartureDate(e.target.value)}
                   onFocus={(e) => {
                     e.target.type = "date";
                     e.target.placeholder = "";
@@ -251,7 +309,7 @@ const BookingPopup = ({
                     {...register("adults")}
                     className="quantity-input"
                     readOnly
-                    value={adults} // Здесь должно быть состояние из вашего компонента
+                    value={adults}
                   />
                   <button
                     type="button"
@@ -282,7 +340,7 @@ const BookingPopup = ({
                     {...register("children")}
                     className="quantity-input"
                     readOnly
-                    value={children} // И здесь состояние из вашего компонента
+                    value={children}
                   />
                   <button
                     type="button"
@@ -302,6 +360,8 @@ const BookingPopup = ({
                 name="name"
                 {...register("name")}
                 className="form-control"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className={"form-group-group"}>
@@ -349,7 +409,7 @@ const BookingPopup = ({
               }`}
               disabled={!isValid}
             >
-              Забронировать
+              {initialBooking ? "Сохранить изменения" : "Создать"}
             </button>
           </form>
         </div>

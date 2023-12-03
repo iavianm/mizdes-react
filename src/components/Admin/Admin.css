@@ -7,6 +7,32 @@
   width: 90%;
 }
 
+.button-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.custom-icon {
+  margin: 0 auto !important;
+}
+
+.button-icon .MuiButton-startIcon {
+  margin: 0;
+  min-width: 36px;
+}
+
+.MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+
+.MuiDataGrid-cell:focus-within {
+  outline: none !important;
+}
+
 @media screen and (max-width: 768px) {
   .admin {
     margin: 150px 0;

@@ -8,11 +8,21 @@ const AuthForm = () => {
     reset,
     setValue,
     watch,
+    trigger,
   } = useForm({
     mode: "onChange",
   });
 
-  return { register, errors, isValid, handleSubmit, reset, setValue, watch };
+  return {
+    register,
+    errors,
+    isValid,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    trigger,
+  };
 };
 
 export default AuthForm;

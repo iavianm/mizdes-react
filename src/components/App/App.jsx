@@ -14,6 +14,7 @@ import {
   login,
   loginWithCookie,
   logout,
+  updateBooking,
 } from "../../utils/api.js";
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
@@ -37,7 +38,6 @@ export default function App() {
     setSnackbarOpen(false);
   };
 
-  // добвавила в другой попап тоже запрет прокрутки фона
   function toggleBodyOverflow() {
     const body = document.body;
     body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
@@ -109,14 +109,12 @@ export default function App() {
     setUsePreloader(true);
     createBooking(booking)
       .then((res) => {
-        // setBookingMessage(res.message);
         setSnackbarMessage(res.message);
         setSnackbarOpen(true);
         handleTogglePopup();
       })
       .catch((error) => {
         console.log(error);
-        // setBookingMessage("Ошибка создания бронирования, попробуйте снова");
         setSnackbarMessage("Ошибка при создании бронирования!");
         setSnackbarOpen(true);
       })
@@ -125,6 +123,11 @@ export default function App() {
 
   function handleChangeVillas(type) {
     setVillaType(type);
+  }
+
+  function handleOpenSnackbar(message) {
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
   }
 
   return (
@@ -168,7 +171,12 @@ export default function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRouteElement loggedIn={loggedIn} element={Admin} />
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                element={Admin}
+                setUsePreloader={setUsePreloader}
+                handleOpenSnackbar={handleOpenSnackbar}
+              />
             }
           />
           <Route path="*" element={<NotFound />} />
