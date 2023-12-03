@@ -14,7 +14,7 @@ const LeisureBlock = () => {
             <img
               src={feature.imageSrc}
               alt={feature.title}
-              style={{ width: "100%", height: "auto", objectFit: "cover" }}
+              style={{ width: "400px", height: "400px", objectFit: "cover" }}
             />
             <h3>{feature.title}</h3>
             <p>{feature.size}</p>
