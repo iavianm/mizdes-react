@@ -6,6 +6,7 @@ import HomePage from "../HomePage/HomePage.jsx";
 // import SpaPage from "../SpaPage/SpaPage.jsx";
 // import RestaurantPage from "../RestaurantPage/RestaurantPage.jsx";
 import ContactsPage from "../ContactsPage/ContactsPage.jsx";
+import DevelopPage from "../DevelopPage/DevelopPage.jsx";
 import { useEffect, useState } from "react";
 import BookingPopup from "../BookingPopup/BookingPopup.jsx";
 import Login from "../Login/Login.jsx";
@@ -153,10 +154,7 @@ export default function App() {
               />
             }
           />
-          {/* <Route
-            path="/restaurant"
-            element={<RestaurantPage handleTogglePopup={handleTogglePopup} />}
-          /> */}
+          <Route path="/develop" element={<DevelopPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route
             path="/signin"

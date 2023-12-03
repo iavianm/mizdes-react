@@ -22,6 +22,9 @@ const Footer = () => {
               <Link to={"/restaurant"}>Ресторан</Link>
             </li> */}
             <li>
+              <Link to="/develop">В процессе</Link>
+            </li>
+            <li>
               <Link to="/contacts">Контакты</Link>
             </li>
           </ul>
