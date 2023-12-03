@@ -1,6 +1,5 @@
 import "./BurgerMenu.css";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
 
 export default function BurgerMenu({
   isOpen,
@@ -17,32 +16,9 @@ export default function BurgerMenu({
     onClose();
   }
 
-  const menuRef = useRef();
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      console.log(event.target);
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        !event.target.matches(".header-burger__img")
-      ) {
-        onClose();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
-
   return (
     <div className={`burger__overlay ${isOpen ? "open" : ""}`}>
-      <div
-        className={`burger__menu ${isOpen ? "open-menu" : "close-menu"}`}
-        ref={menuRef}
-      >
+      <div className={`burger__menu ${isOpen ? "open-menu" : "close-menu"}`}>
         <button className="burger__close-btn" onClick={onClose}>
           <img src="/images/close-icon.svg" alt={"закрыть"}></img>
         </button>
