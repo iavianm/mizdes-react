@@ -21,8 +21,13 @@ export default function BurgerMenu({
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        onClose(); // Закрыть меню, если клик вне меню
+      console.log(event.target);
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !event.target.matches(".header-burger__img")
+      ) {
+        onClose();
       }
     }
 
