@@ -34,7 +34,7 @@ export default function HomePage() {
         images={sliderHomeImages.spa}
         link={"/spa"}
       /> */}
-      <InteractiveMap />
+      {/*<InteractiveMap />*/}
       {/*<LeisureBlock />*/}
       <TextBlock />
     </section>

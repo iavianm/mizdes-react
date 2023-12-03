@@ -3,8 +3,6 @@ import Footer from "../Footer/Footer";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import HousesPage from "../HousesPage/HousesPage.jsx";
 import HomePage from "../HomePage/HomePage.jsx";
-// import SpaPage from "../SpaPage/SpaPage.jsx";
-// import RestaurantPage from "../RestaurantPage/RestaurantPage.jsx";
 import ContactsPage from "../ContactsPage/ContactsPage.jsx";
 import DevelopPage from "../DevelopPage/DevelopPage.jsx";
 import { useEffect, useState } from "react";
@@ -15,7 +13,6 @@ import {
   login,
   loginWithCookie,
   logout,
-  updateBooking,
 } from "../../utils/api.js";
 import Preloader from "../Preloader/Preloader.jsx";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
