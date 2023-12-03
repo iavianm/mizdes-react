@@ -66,7 +66,7 @@ export default function BurgerMenu({
                   className={"burger__item"}
                   onClick={onClose}
                 >
-                  В процессе
+                  В&nbsp;процессе
                 </NavLink>
               </li>
               <li>

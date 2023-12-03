@@ -59,7 +59,7 @@ function Header({ handleTogglePopup, loggedIn, handleLogout }) {
             </li> */}
             <li className={"header__list-items"}>
               <NavLink to="/develop" className={"header__list-item"}>
-                В процессе
+                В&nbsp;процессе
               </NavLink>
             </li>
             <li className={"header__list-items"}>

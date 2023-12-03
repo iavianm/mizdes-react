@@ -22,7 +22,7 @@ const Footer = () => {
               <Link to={"/restaurant"}>Ресторан</Link>
             </li> */}
             <li>
-              <Link to="/develop">В процессе</Link>
+              <Link to="/develop">В&nbsp;процессе</Link>
             </li>
             <li>
               <Link to="/contacts">Контакты</Link>
