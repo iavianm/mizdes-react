@@ -20,14 +20,14 @@ const ContactsPage = () => {
             <a className="contacts__link" href="tel:+79219095700">
               +7 921 909 57 00
             </a>
-            <a className="contacts__link" href="mailto:info@mizdes.com">
-              info@mizdes.com
+            <a className="contacts__link" href="mailto:mizdesclub@yandex.ru">
+              mizdesclub@yandex.ru
             </a>
           </div>
 
           <iframe
             className="contacts__frame"
-            src="https://yandex.ru/map-widget/v1/?from=mapframe&ll=29.062070%2C60.185200&mode=usermaps&source=mapframe&um=constructor%3Ab4237b51cdc93a034c38b3234b59c27d4f45dea18bed855a6632e0489d29425e&utm_source=mapframe&z=14"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3Adadf61b860d583f6293529f22ec1d8661c2270ae707a2bafebadf6f3b8d9b1ab&amp;source=constructor"
             width="100%"
             height="400"
             allowFullScreen
