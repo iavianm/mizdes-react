@@ -13,7 +13,6 @@ const BookingPopup = ({
   handleTogglePopup,
   handleCreateBooking,
   handleUpdateBooking,
-  villaType,
   initialBooking,
 }) => {
   const [adults, setAdults] = useState(1);
@@ -159,20 +158,17 @@ const BookingPopup = ({
     clearPopupForm();
   }
 
-  useEffect(() => {
-    setCottageType(villaType);
-    setValue("cottage_type", villaType);
-  }, [villaType]);
-
   const onSubmit = (data) => {
-    console.log(data);
-
     const bookingData = {
-      ...data,
       cottage_type: cottageType,
       additional_options: selectedOptions,
       arrival_date: formatDate(arrivalDate),
       departure_date: formatDate(departureDate),
+      name: data.name,
+      adults: data.adults,
+      children: data.children,
+      phone: data.phone,
+      email: data.email,
     };
 
     if (initialBooking) {
@@ -215,11 +211,29 @@ const BookingPopup = ({
     setValue("cottage_type", selectedValue);
   };
 
-  const checkAvailabilityAndUpdateMessage = (newStartDate, newEndDate) => {
+  const isValidDateFormat = (dateString) => {
+    const date = new Date(dateString);
+    return !isNaN(date.getTime());
+  };
+
+  const checkAvailabilityAndUpdateMessage = (startDate, endDate) => {
+    if (!startDate || !endDate || isEditing) return {};
+
     const editingBookingId = initialBooking ? initialBooking._id : null;
+
+    const startDateParse = isValidDateFormat(startDate)
+      ? startDate
+      : parseDateString(startDate);
+    const endDateParse = isValidDateFormat(endDate)
+      ? endDate
+      : parseDateString(endDate);
+
+    const startBooking = utcToZonedTime(new Date(startDateParse), timeZone);
+    const finishBooking = utcToZonedTime(new Date(endDateParse), timeZone);
+
     const availableVillas = isHouseAvailable(
-      newStartDate,
-      newEndDate,
+      startBooking,
+      finishBooking,
       bookedDates,
       editingBookingId,
     );
@@ -231,11 +245,15 @@ const BookingPopup = ({
       Object.keys(availableVillas).length === 0
         ? {}
         : {
-            available: `Доступно: ${
-              availableVillas.availableHouses ? "Да" : "Нет"
-            }`,
-            riviera: `Ривьера - ${availableVillas.riviera}`,
-            grandis: `Грандис - ${availableVillas.grandis}`,
+            available: availableVillas.availableHouses
+              ? `Доступны коттеджи: ${
+                  availableVillas.riviera > 0 ? "Ривьера" : ""
+                }${
+                  availableVillas.riviera > 0 && availableVillas.grandis > 0
+                    ? ", "
+                    : ""
+                }${availableVillas.grandis > 0 ? "Грандис" : ""}`
+              : "Нет свободных коттеджей",
           },
     );
   };
@@ -272,19 +290,27 @@ const BookingPopup = ({
   }
 
   const isHouseAvailable = (
-    newStartDate,
-    newEndDate,
+    startBooking,
+    finishBooking,
     bookings,
     editingBookingId,
   ) => {
-    if (!newStartDate) return {};
+    if (!startBooking) return {};
+    if (!finishBooking) return {};
 
     let riviera = 3;
     let grandis = 2;
     let availableHouses = 5;
 
-    const startDateTime = utcToZonedTime(new Date(newStartDate), timeZone);
-    for (const booking of bookings) {
+    const filteredBookings = bookings.filter((booking) => {
+      const arrivalDateTime = utcToZonedTime(
+        new Date(parseDateString(booking.arrivalDate)),
+        timeZone,
+      );
+      return arrivalDateTime < finishBooking;
+    });
+
+    for (const booking of filteredBookings) {
       if (editingBookingId && booking._id === editingBookingId) {
         continue;
       }
@@ -294,7 +320,7 @@ const BookingPopup = ({
         timeZone,
       );
 
-      if (departureDateTime > startDateTime) {
+      if (startBooking < departureDateTime) {
         availableHouses -= 1;
         if (booking.cottageType === "riviera") {
           riviera -= 1;
@@ -311,12 +337,6 @@ const BookingPopup = ({
       grandis: grandis > 0 ? grandis : 0,
     };
   };
-
-  useEffect(() => {
-    if (isVisible) {
-      trigger("phone");
-    }
-  }, [isVisible, trigger]);
 
   useEffect(() => {
     if (isVisible && initialBooking) {
@@ -372,9 +392,10 @@ const BookingPopup = ({
                         handleArrivalDateChange(date);
                         onChange(date);
                       }}
-                      minDate={new Date()}
+                      minDate={isEditing ? arrivalDate : new Date()}
                       dateFormat="dd/MM/yyyy"
                       placeholderText="Дата заезда *"
+                      disabled={isEditing}
                     />
                   )}
                 />
@@ -397,9 +418,10 @@ const BookingPopup = ({
                         handleDepartureDateChange(date);
                         onChange(date);
                       }}
-                      minDate={arrivalDate}
+                      minDate={arrivalDate || new Date()}
                       dateFormat="dd/MM/yyyy"
                       placeholderText="Дата выезда *"
+                      disabled={isEditing}
                     />
                   )}
                 />
@@ -409,36 +431,15 @@ const BookingPopup = ({
               {Object.keys(availabilityMessage).length === 0 ? (
                 ""
               ) : (
-                <>
-                  <span
-                    className={`text-visible ${
-                      !availabilityState.availableHouses
-                        ? "text-red"
-                        : "text-green"
-                    }`}
-                  >
-                    {availabilityMessage.available}
-                  </span>
-                  <span
-                    className={`${
-                      availabilityState.riviera === 0
-                        ? "text-red"
-                        : "text-green"
-                    }`}
-                  >
-                    {availabilityMessage.riviera}
-                  </span>
-                  <span
-                    className={`${
-                      !availabilityState.availableHouses ||
-                      availabilityState.grandis === 0
-                        ? "text-red"
-                        : "text-green"
-                    }`}
-                  >
-                    {availabilityMessage.grandis}
-                  </span>
-                </>
+                <span
+                  className={`${
+                    !availabilityState.availableHouses
+                      ? "text-red"
+                      : "text-green"
+                  }`}
+                >
+                  {availabilityMessage.available}
+                </span>
               )}
             </p>
             <div className="form-group">
@@ -451,6 +452,7 @@ const BookingPopup = ({
                 }`}
                 value={cottageType}
                 onChange={handleSelectChange}
+                disabled={isEditing}
               >
                 <option value="" disabled>
                   Выберите коттедж
@@ -601,11 +603,15 @@ const BookingPopup = ({
             <button
               type="submit"
               className={`submit-button ${
-                !isValid || !availabilityStateButton
-                  ? "submit-button-disable"
-                  : ""
+                isEditing
+                  ? false
+                  : !isValid || !availabilityStateButton
+                    ? "submit-button-disable"
+                    : ""
               }`}
-              disabled={!isValid || !availabilityStateButton}
+              disabled={
+                isEditing ? false : !isValid || !availabilityStateButton
+              }
             >
               {initialBooking ? "Сохранить изменения" : "Создать"}
             </button>
