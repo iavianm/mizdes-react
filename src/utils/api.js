@@ -1,5 +1,5 @@
-// export const BASE_URL = "http://localhost:3000/api";
-export const BASE_URL = "https://www.mizdes.com/api";
+export const BASE_URL = "http://localhost:3000/api";
+// export const BASE_URL = "https://www.mizdes.com/api";
 
 function getResponse(res) {
   if (!res.ok) {
@@ -65,8 +65,8 @@ export const getBookings = () =>
     },
   }).then(getResponse);
 
-export const showBooking = (bookingId) =>
-  fetch(`${BASE_URL}/bookings/${bookingId}`, {
+export function getLatestBookings() {
+  return fetch(`${BASE_URL}/bookings/latest`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -74,10 +74,9 @@ export const showBooking = (bookingId) =>
       "Content-Type": "application/json",
     },
   }).then(getResponse);
+}
 
 export function updateBooking(bookingId, booking) {
-  console.log(booking);
-
   return fetch(`${BASE_URL}/bookings/${bookingId}`, {
     method: "PATCH",
     credentials: "include",

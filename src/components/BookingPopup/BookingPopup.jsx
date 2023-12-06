@@ -1,6 +1,12 @@
 import "./BookingPopup.css";
 import { useEffect, useRef, useState } from "react";
 import AuthForm from "../AuthForm/AuthForm.jsx";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format, utcToZonedTime } from "date-fns-tz";
+import { parse } from "date-fns";
+import { Controller } from "react-hook-form";
+import { getLatestBookings } from "../../utils/api.js";
 
 const BookingPopup = ({
   isVisible,
@@ -12,15 +18,37 @@ const BookingPopup = ({
 }) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-  const [cottageType, setCottageType] = useState("any");
+  const [cottageType, setCottageType] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showCheckboxes, setShowCheckboxes] = useState(false);
   const [arrivalDate, setArrivalDate] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [name, setName] = useState("");
+  const [availabilityMessage, setAvailabilityMessage] = useState({});
+  const [availabilityState, setAvailabilityState] = useState({});
+  const [availabilityStateButton, setAvailabilityStateButton] = useState(false);
   const dropdownRef = useRef(null);
-  const { register, errors, isValid, handleSubmit, reset, setValue, trigger } =
-    AuthForm({ defaultValues: initialBooking });
+  const [bookedDates, setBookedDates] = useState([]);
+  const {
+    register,
+    errors,
+    isValid,
+    handleSubmit,
+    reset,
+    setValue,
+    trigger,
+    control,
+    getValues,
+  } = AuthForm({ defaultValues: initialBooking });
+  const timeZone = "Europe/Moscow";
+
+  const isEditing = !!initialBooking;
+
+  useEffect(() => {
+    getLatestBookings().then((res) => {
+      setBookedDates(res);
+    });
+  }, [isVisible]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -40,9 +68,11 @@ const BookingPopup = ({
       Object.keys(initialBooking).forEach((key) => {
         if (key === "cottageType") {
           setCottageType(initialBooking[key]);
+          setValue("cottage_type", initialBooking[key]);
         }
         if (key === "name") {
           setName(initialBooking[key]);
+          setValue("name", initialBooking[key]);
         }
 
         if (key === "additionalOptions") {
@@ -58,14 +88,32 @@ const BookingPopup = ({
         }
 
         if (key === "arrivalDate") {
-          setArrivalDate(initialBooking[key]);
+          const arrivalDate = utcToZonedTime(
+            new Date(parseDateString(initialBooking[key])),
+            timeZone,
+          );
+
+          setArrivalDate(arrivalDate);
+          setValue("arrivalDate", arrivalDate);
         }
 
         if (key === "departureDate") {
-          setDepartureDate(initialBooking[key]);
+          const departureDate = utcToZonedTime(
+            new Date(parseDateString(initialBooking[key])),
+            timeZone,
+          );
+
+          setDepartureDate(departureDate);
+          setValue("departureDate", departureDate);
         }
 
-        setValue(key, initialBooking[key]);
+        if (key === "phone") {
+          setValue("phone", initialBooking[key]);
+        }
+
+        if (key === "email") {
+          setValue("email", initialBooking[key]);
+        }
       });
       trigger();
     }
@@ -92,14 +140,23 @@ const BookingPopup = ({
     setValue("children", newChildren);
   };
 
-  function onClose() {
-    handleTogglePopup();
-    if (!isVisible) {
+  function clearPopupForm() {
+    if (isVisible) {
       setAdults(1);
       setChildren(0);
       setSelectedOptions([]);
+      setAvailabilityMessage({});
+      setCottageType("");
+      setArrivalDate("");
+      setDepartureDate("");
+      setName("");
       reset();
     }
+  }
+
+  function onClose() {
+    handleTogglePopup();
+    clearPopupForm();
   }
 
   useEffect(() => {
@@ -114,8 +171,8 @@ const BookingPopup = ({
       ...data,
       cottage_type: cottageType,
       additional_options: selectedOptions,
-      arrival_date: arrivalDate,
-      departure_date: departureDate,
+      arrival_date: formatDate(arrivalDate),
+      departure_date: formatDate(departureDate),
     };
 
     if (initialBooking) {
@@ -123,12 +180,8 @@ const BookingPopup = ({
     } else {
       handleCreateBooking(bookingData);
     }
-    if (!isVisible) {
-      setAdults(1);
-      setChildren(0);
-      setSelectedOptions([]);
-      reset();
-    }
+
+    clearPopupForm();
   };
 
   const errorPhone = {
@@ -162,6 +215,118 @@ const BookingPopup = ({
     setValue("cottage_type", selectedValue);
   };
 
+  const checkAvailabilityAndUpdateMessage = (newStartDate, newEndDate) => {
+    const editingBookingId = initialBooking ? initialBooking._id : null;
+    const availableVillas = isHouseAvailable(
+      newStartDate,
+      newEndDate,
+      bookedDates,
+      editingBookingId,
+    );
+
+    setAvailabilityState(availableVillas);
+    setAvailabilityStateButton(availableVillas.availableHouses);
+
+    setAvailabilityMessage(
+      Object.keys(availableVillas).length === 0
+        ? {}
+        : {
+            available: `Доступно: ${
+              availableVillas.availableHouses ? "Да" : "Нет"
+            }`,
+            riviera: `Ривьера - ${availableVillas.riviera}`,
+            grandis: `Грандис - ${availableVillas.grandis}`,
+          },
+    );
+  };
+
+  const handleArrivalDateChange = (date) => {
+    setArrivalDate(date);
+    if (date && departureDate && date > departureDate) {
+      setDepartureDate(date);
+    }
+
+    if (
+      date &&
+      getValues("departureDate") &&
+      date > getValues("departureDate")
+    ) {
+      setValue("departureDate", date);
+    }
+    checkAvailabilityAndUpdateMessage(date, departureDate);
+  };
+
+  const handleDepartureDateChange = (date) => {
+    setDepartureDate(date);
+    checkAvailabilityAndUpdateMessage(arrivalDate, date);
+  };
+
+  function formatDate(date) {
+    if (!date) return "";
+    const zonedDate = utcToZonedTime(date, timeZone);
+    return format(zonedDate, "dd/MM/yyyy", { timeZone });
+  }
+
+  function parseDateString(dateString) {
+    return parse(dateString, "dd/MM/yyyy", new Date());
+  }
+
+  const isHouseAvailable = (
+    newStartDate,
+    newEndDate,
+    bookings,
+    editingBookingId,
+  ) => {
+    if (!newStartDate) return {};
+
+    let riviera = 3;
+    let grandis = 2;
+    let availableHouses = 5;
+
+    const startDateTime = utcToZonedTime(new Date(newStartDate), timeZone);
+    for (const booking of bookings) {
+      if (editingBookingId && booking._id === editingBookingId) {
+        continue;
+      }
+
+      const departureDateTime = utcToZonedTime(
+        new Date(parseDateString(booking.departureDate)),
+        timeZone,
+      );
+
+      if (departureDateTime > startDateTime) {
+        availableHouses -= 1;
+        if (booking.cottageType === "riviera") {
+          riviera -= 1;
+        }
+        if (booking.cottageType === "grandis") {
+          grandis -= 1;
+        }
+      }
+    }
+
+    return {
+      availableHouses: availableHouses > 0,
+      riviera: riviera > 0 ? riviera : 0,
+      grandis: grandis > 0 ? grandis : 0,
+    };
+  };
+
+  useEffect(() => {
+    if (isVisible) {
+      trigger("phone");
+    }
+  }, [isVisible, trigger]);
+
+  useEffect(() => {
+    if (isVisible && initialBooking) {
+      checkAvailabilityAndUpdateMessage(
+        initialBooking.arrivalDate,
+        initialBooking.departureDate,
+      );
+    }
+  }, [isVisible, initialBooking]);
+
   return (
     <>
       <div
@@ -188,25 +353,114 @@ const BookingPopup = ({
             onSubmit={handleSubmit(onSubmit)}
             noValidate
           >
+            <div className={"form-group-group"}>
+              <div className="form-group-date">
+                <Controller
+                  control={control}
+                  name="arrivalDate"
+                  rules={{ required: "Дата заезда обязательна" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <DatePicker
+                      className={`form-control ${
+                        error || !arrivalDate ? "is-invalid" : ""
+                      }`}
+                      selected={value}
+                      onChange={(date) => {
+                        handleArrivalDateChange(date);
+                        onChange(date);
+                      }}
+                      minDate={new Date()}
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="Дата заезда *"
+                    />
+                  )}
+                />
+              </div>
+              <div className="form-group-date">
+                <Controller
+                  control={control}
+                  name="departureDate"
+                  rules={{ required: "Дата выезда обязательна" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <DatePicker
+                      className={`form-control ${
+                        error || !departureDate ? "is-invalid" : ""
+                      }`}
+                      selected={value}
+                      onChange={(date) => {
+                        handleDepartureDateChange(date);
+                        onChange(date);
+                      }}
+                      minDate={arrivalDate}
+                      dateFormat="dd/MM/yyyy"
+                      placeholderText="Дата выезда *"
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <p className={"availability-title"}>
+              {Object.keys(availabilityMessage).length === 0 ? (
+                ""
+              ) : (
+                <>
+                  <span
+                    className={`text-visible ${
+                      !availabilityState.availableHouses
+                        ? "text-red"
+                        : "text-green"
+                    }`}
+                  >
+                    {availabilityMessage.available}
+                  </span>
+                  <span
+                    className={`${
+                      availabilityState.riviera === 0
+                        ? "text-red"
+                        : "text-green"
+                    }`}
+                  >
+                    {availabilityMessage.riviera}
+                  </span>
+                  <span
+                    className={`${
+                      !availabilityState.availableHouses ||
+                      availabilityState.grandis === 0
+                        ? "text-red"
+                        : "text-green"
+                    }`}
+                  >
+                    {availabilityMessage.grandis}
+                  </span>
+                </>
+              )}
+            </p>
             <div className="form-group">
-              <label
-                htmlFor="cottage-type"
-                className={"form-group-option-label"}
-              >
-                Желаемый коттедж
-              </label>
               <select
                 id="cottage-type"
                 name="cottage_type"
-                {...register("cottage_type")}
-                className="form-control form-group-option"
+                {...register("cottage_type", { required: true })}
+                className={`form-control form-group-option ${
+                  cottageType === "" ? "is-invalid-villa" : ""
+                }`}
                 value={cottageType}
                 onChange={handleSelectChange}
               >
-                <option value="riviera">Ривьера</option>
-                <option value="grandis">Грандис</option>
-                {/*<option value="highgarden">Хайгарден</option>*/}
-                <option value="any">Любой вариант</option>
+                <option value="" disabled>
+                  Выберите коттедж
+                </option>
+                {(availabilityState.riviera > 0 || isEditing) && (
+                  <option value="riviera">Ривьера</option>
+                )}
+                {(availabilityState.grandis > 0 || isEditing) && (
+                  <option value="grandis">Грандис</option>
+                )}
               </select>
             </div>
             <div className="form-group" ref={dropdownRef}>
@@ -242,52 +496,6 @@ const BookingPopup = ({
                     </label>
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className={"form-group-group"}>
-              <div className="form-group-date">
-                <input
-                  {...register("arrival_date")}
-                  type="text"
-                  value={arrivalDate}
-                  id="arrival-date"
-                  name="arrival_date"
-                  className="form-control"
-                  placeholder="Дата заезда"
-                  onChange={(e) => setArrivalDate(e.target.value)}
-                  onFocus={(e) => {
-                    e.target.type = "date";
-                    e.target.placeholder = "";
-                  }}
-                  onBlur={(e) => {
-                    if (!e.target.value) {
-                      e.target.type = "text";
-                      e.target.placeholder = "Дата заезда";
-                    }
-                  }}
-                />
-              </div>
-              <div className="form-group-date">
-                <input
-                  type="text"
-                  id="departure-date"
-                  name="departure_date"
-                  {...register("departure_date")}
-                  value={departureDate}
-                  className="form-control"
-                  placeholder="Дата выезда"
-                  onChange={(e) => setDepartureDate(e.target.value)}
-                  onFocus={(e) => {
-                    e.target.type = "date";
-                    e.target.placeholder = "";
-                  }}
-                  onBlur={(e) => {
-                    if (!e.target.value) {
-                      e.target.type = "text";
-                      e.target.placeholder = "Дата выезда";
-                    }
-                  }}
-                />
               </div>
             </div>
 
@@ -353,7 +561,6 @@ const BookingPopup = ({
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="name">Ваше имя</label>
               <input
                 type="text"
                 id="name"
@@ -362,52 +569,43 @@ const BookingPopup = ({
                 className="form-control"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder={"Ваше имя"}
               />
             </div>
             <div className={"form-group-group"}>
               <div className="form-group">
-                <label htmlFor="phone">Ваш телефон</label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
                   {...register("phone", errorPhone)}
-                  className="form-control"
+                  className={`form-control ${
+                    errors["phone"] ? "is-invalid" : ""
+                  }`}
                   placeholder="+7 999 888 77 66"
                 />
-                <span
-                  className={`input__error ${
-                    errors ? "input__error-show" : ""
-                  }`}
-                >
-                  {errors ? errors["phone"]?.message || "" : ""}
-                </span>
               </div>
               <div className="form-group">
-                <label htmlFor="email">Ваш email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   {...register("email", errorEmail)}
-                  className="form-control"
+                  className={`form-control ${
+                    errors["email"] ? "is-invalid" : ""
+                  }`}
                   placeholder="email@gmail.com"
                 />
-                <span
-                  className={`input__error ${
-                    errors ? "input__error-show" : ""
-                  }`}
-                >
-                  {errors ? errors["email"]?.message || "" : ""}
-                </span>
               </div>
             </div>
             <button
               type="submit"
               className={`submit-button ${
-                !isValid ? "submit-button-disable" : ""
+                !isValid || !availabilityStateButton
+                  ? "submit-button-disable"
+                  : ""
               }`}
-              disabled={!isValid}
+              disabled={!isValid || !availabilityStateButton}
             >
               {initialBooking ? "Сохранить изменения" : "Создать"}
             </button>

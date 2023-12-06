@@ -44,7 +44,7 @@ export default function App() {
   function handleTogglePopup() {
     setOpenPopup(!openPopup);
     toggleBodyOverflow();
-    setVillaType("any");
+    setVillaType("");
   }
 
   useEffect(() => {

@@ -9,6 +9,8 @@ const AuthForm = () => {
     setValue,
     watch,
     trigger,
+    control,
+    getValues,
   } = useForm({
     mode: "onChange",
   });
@@ -22,6 +24,8 @@ const AuthForm = () => {
     setValue,
     watch,
     trigger,
+    control,
+    getValues,
   };
 };
 
