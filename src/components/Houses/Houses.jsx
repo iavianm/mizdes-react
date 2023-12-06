@@ -58,14 +58,7 @@ const Houses = ({
                 </button>
               </div>
             </div>
-            <div className="villa-image">
-              <img
-                src={image.src}
-                alt={image.alt}
-                // layout="fill"
-                // objectFit="cover"
-              />
-            </div>
+            <img className={"villa-image"} src={image.src} alt={image.alt} />
           </div>
         </div>
       </div>

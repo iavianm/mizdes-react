@@ -21,7 +21,7 @@
       "tour": "Виртуальный тур"
     },
     "image": {
-      "src": "/images/riviera.png",
+      "src": "/images/riviera_new.jpeg",
       "alt": "Вилла Ривьера"
     }
   },
@@ -50,7 +50,7 @@
       "tour": "Виртуальный тур"
     },
     "image": {
-      "src": "/images/grandis.png",
+      "src": "/images/grandis_new.jpeg",
       "alt": "Дом Грандис"
     }
   },

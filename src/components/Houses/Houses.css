@@ -92,9 +92,11 @@
   width: 45%;
 }
 
-.villa-image img {
-  border-radius: 10px;
-}
+/*.villa-image img {*/
+/*  border-radius: 10px;*/
+/*  object-fit: cover;*/
+/*  height: 20%;*/
+/*}*/
 
 .villa-info-container {
   display: flex;

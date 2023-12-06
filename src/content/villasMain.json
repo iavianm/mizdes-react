@@ -6,7 +6,7 @@
       "price": "55 тыс.",
       "rooms": "2 комнаты",
       "description": "Функциональная, современная, компактная вилла для небольшой компании",
-      "imageSrc": "/images/villa-riviera.png"
+      "imageSrc": "/images/riviera_new.jpeg"
     },
     {
       "name": "Грандис",
@@ -14,7 +14,7 @@
       "price": "65 тыс.",
       "rooms": "3 комнаты",
       "description": "Комфортная, стильная вилла для семейного отдыха",
-      "imageSrc": "/images/villa-grandis.png"
+      "imageSrc": "/images/grandis_new.jpeg"
     }
   ]
 }
