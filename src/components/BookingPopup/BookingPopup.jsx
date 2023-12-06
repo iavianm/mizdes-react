@@ -38,6 +38,7 @@ const BookingPopup = ({
     trigger,
     control,
     getValues,
+    setError,
   } = AuthForm({ defaultValues: initialBooking });
   const timeZone = "Europe/Moscow";
 
@@ -334,6 +335,17 @@ const BookingPopup = ({
       grandis: grandis > 0 ? grandis : 0,
     };
   };
+
+  useEffect(() => {
+    if (isVisible) {
+      if (!getValues("phone")) {
+        setError("phone", {
+          type: "manual",
+          message: "Телефон не может быть пустым",
+        });
+      }
+    }
+  }, [isVisible, getValues, setError]);
 
   useEffect(() => {
     if (isVisible && initialBooking) {

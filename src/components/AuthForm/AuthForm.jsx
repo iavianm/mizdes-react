@@ -11,6 +11,7 @@ const AuthForm = () => {
     trigger,
     control,
     getValues,
+    setError,
   } = useForm({
     mode: "onChange",
   });
@@ -26,6 +27,7 @@ const AuthForm = () => {
     trigger,
     control,
     getValues,
+    setError,
   };
 };
 
