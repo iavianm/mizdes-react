@@ -140,15 +140,17 @@ const BookingPopup = ({
   };
 
   useEffect(() => {
-    setAdults(1);
-    setChildren(0);
-    setSelectedOptions([]);
-    setAvailabilityMessage({});
-    setCottageType("");
-    setArrivalDate("");
-    setDepartureDate("");
-    setName("");
-    reset();
+    if (!isEditing) {
+      setAdults(1);
+      setChildren(0);
+      setSelectedOptions([]);
+      setAvailabilityMessage({});
+      setCottageType("");
+      setArrivalDate("");
+      setDepartureDate("");
+      setName("");
+      reset();
+    }
   }, [isVisible]);
 
   function onClose() {
