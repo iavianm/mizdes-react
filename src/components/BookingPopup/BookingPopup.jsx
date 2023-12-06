@@ -139,23 +139,20 @@ const BookingPopup = ({
     setValue("children", newChildren);
   };
 
-  function clearPopupForm() {
-    if (isVisible) {
-      setAdults(1);
-      setChildren(0);
-      setSelectedOptions([]);
-      setAvailabilityMessage({});
-      setCottageType("");
-      setArrivalDate("");
-      setDepartureDate("");
-      setName("");
-      reset();
-    }
-  }
+  useEffect(() => {
+    setAdults(1);
+    setChildren(0);
+    setSelectedOptions([]);
+    setAvailabilityMessage({});
+    setCottageType("");
+    setArrivalDate("");
+    setDepartureDate("");
+    setName("");
+    reset();
+  }, [isVisible]);
 
   function onClose() {
     handleTogglePopup();
-    clearPopupForm();
   }
 
   const onSubmit = (data) => {
@@ -176,8 +173,6 @@ const BookingPopup = ({
     } else {
       handleCreateBooking(bookingData);
     }
-
-    clearPopupForm();
   };
 
   const errorPhone = {
