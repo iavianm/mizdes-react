@@ -1,16 +1,39 @@
 import "./Houses.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useState } from "react";
 
 const Houses = ({
   house,
   handleTogglePopup,
   handleTogglePopupTour,
   handleChangeVillas,
+  images,
 }) => {
   const { key, title, specs, description, tags, about, buttons, image } = house;
 
   const handleButtonClick = () => {
     handleTogglePopup();
     handleChangeVillas(key);
+  };
+
+  const [showSlider, setShowSlider] = useState(false);
+
+  const handleImageToggle = () => {
+    setShowSlider(!showSlider);
+    console.log("click", showSlider, images);
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
   };
 
   return (
@@ -58,7 +81,37 @@ const Houses = ({
                 </button>
               </div>
             </div>
-            <img className={"villa-image"} src={image.src} alt={image.alt} />
+            <img
+              className={"villa-image"}
+              src={image.src}
+              alt={image.alt}
+              onClick={handleImageToggle}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className={`slider-overlay ${showSlider ? "open" : ""}`}>
+        <div className="slider-container">
+          <button className="slider-btn">
+            <img
+              className="slider-btn-close"
+              src="/images/close-icon.svg"
+              onClick={handleImageToggle}
+            ></img>
+          </button>
+          <div className="slider-content">
+            <Slider {...settings}>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="slider__home-img"
+                  />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </div>
