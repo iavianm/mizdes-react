@@ -91,6 +91,11 @@
   position: relative;
   width: 45%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.villa-image:hover {
+  border: #cc8400 solid 2px;
 }
 
 .villa-info-container {
@@ -138,6 +143,77 @@
 .buttons-container {
   display: flex;
   justify-content: space-between;
+}
+
+.slider-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.3s,
+    opacity 0.3s linear,
+    transform 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.slider-container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.slick-next {
+  right: 10px !important;
+  z-index: 999 !important;
+  border-radius: 50%;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-arrow::before {
+  color: #f16806ff !important;
+  font-size: 40px !important;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 999 !important;
+}
+
+@media screen and (max-width: 600px) {
+  .slider-btn {
+    right: 0;
+  }
+}
+
+.slider__home-img {
+  object-fit: contain;
+  width: 100%;
+  height: 90vh;
 }
 
 @media screen and (max-width: 1200px) {

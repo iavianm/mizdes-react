@@ -11,14 +11,18 @@ export default function BurgerMenu({
   const location = useLocation();
   const isAdminPanel = location.pathname.includes("/admin");
 
+
   function handleBurgerLogout() {
     handleLogout();
     onClose();
   }
 
   return (
-    <div className={`burger__overlay ${isOpen ? "open" : ""}`}>
-      <div className={`burger__menu ${isOpen ? "open-menu" : "close-menu"}`}>
+    <div className={`burger__overlay ${isOpen ? "open" : ""}`}  onClick={onClose}>
+      <div
+        className={`burger__menu ${isOpen ? "open-menu" : "close-menu"}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className="burger__close-btn" onClick={onClose}>
           <img src="/images/close-icon.svg" alt={"закрыть"}></img>
         </button>

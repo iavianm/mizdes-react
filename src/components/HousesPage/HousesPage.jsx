@@ -5,6 +5,7 @@ import TerraceBlock from "../TerraceBlock/TerraceBlock.jsx";
 import heroContent from "../../content/heroContent.json";
 import { useEffect, useState } from "react";
 import HousesPopup from "../HousesPopup/HousesPopup.jsx";
+import homeSlider from '../../content/homeSlider.json';
 
 const HousesPage = ({ handleTogglePopup, handleChangeVillas }) => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -37,12 +38,14 @@ const HousesPage = ({ handleTogglePopup, handleChangeVillas }) => {
         handleTogglePopup={handleTogglePopup}
         handleTogglePopupTour={handleTogglePopupTour}
         handleChangeVillas={handleChangeVillas}
+        images={homeSlider.riviera}
       />
       <Houses
         house={housesContent.grandis}
         handleTogglePopup={handleTogglePopup}
         handleTogglePopupTour={handleTogglePopupTour}
         handleChangeVillas={handleChangeVillas}
+        images={homeSlider.grandis}
       />
       {/* <Houses
         house={housesContent.highgarden}
