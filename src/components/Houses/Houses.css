@@ -191,6 +191,7 @@
   background-color: rgba(0, 0, 0, 0);
   z-index: 5;
   cursor: pointer;
+  padding: 0;
 }
 
 .slick-next {
