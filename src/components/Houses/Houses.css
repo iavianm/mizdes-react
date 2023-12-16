@@ -95,7 +95,8 @@
 }
 
 .villa-image:hover {
-  border: #cc8400 solid 2px;
+  transform: scale(1.01);
+  transition: transform 0.3s ease-in-out;
 }
 
 .villa-info-container {
