@@ -17,8 +17,8 @@ const ContactsPage = () => {
             <p>Полянское сельское поселение</p>
           </div>
           <div className="contacts__connect">
-            <a className="contacts__link" href="tel:+79219095700">
-              +7 921 909 57 00
+            <a className="contacts__link" href="tel:+79215567284">
+              +7 921 556 72 84
             </a>
             <a className="contacts__link" href="mailto:mizdesclub@yandex.ru">
               mizdesclub@yandex.ru

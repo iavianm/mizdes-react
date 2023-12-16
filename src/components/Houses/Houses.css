@@ -94,6 +94,10 @@
   cursor: pointer;
 }
 
+.villa-image:hover {
+  border: #cc8400 solid 2px;
+}
+
 .villa-info-container {
   display: flex;
   align-items: center;
@@ -182,6 +186,24 @@
   cursor: pointer;
 }
 
+.slick-next {
+  right: 10px !important;
+  z-index: 999 !important;
+  border-radius: 50%;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-arrow::before {
+  color: #f16806ff !important;
+  font-size: 40px !important;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 999 !important;
+}
+
 @media screen and (max-width: 600px) {
   .slider-btn {
     right: 0;
@@ -189,7 +211,7 @@
 }
 
 .slider__home-img {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 90vh;
 }

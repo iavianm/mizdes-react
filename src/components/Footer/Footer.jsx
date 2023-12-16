@@ -46,7 +46,7 @@ const Footer = () => {
                 Приморское городское поселение, Рощинское лесничество
               </p>
               <div className={"footer-address-links"}>
-                <a href="tel:+79219095700">+7 921 909 57 00</a>
+                <a href="tel:+79215567284">+7 921 556 72 84</a>
 
                 <a href="mailto:mizdesclub@yandex.ru">mizdesclub@yandex.ru</a>
               </div>
