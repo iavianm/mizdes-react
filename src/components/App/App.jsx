@@ -188,7 +188,7 @@ export default function App() {
       />
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={2000}
+        autoHideDuration={1000}
         onClose={handleSnackbarClose}
         message={snackbarMessage}
         anchorOrigin={{
@@ -200,8 +200,11 @@ export default function App() {
             backgroundColor:
               snackbarMessage === "Ошибка при создании бронирования!"
                 ? "red"
-                : "lightgreen",
-            color: "#fff",
+                : "#ffffff",
+            color:
+              snackbarMessage === "Ошибка при создании бронирования!"
+                ? "#ffffff"
+                : "#1d9819",
             fontSize: "1rem",
             fontWeight: "bold",
             width: "100%",
