@@ -19,6 +19,7 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
 import Admin from "../Admin/Admin.jsx";
 import { Snackbar } from "@mui/material";
+import YandexMetrika from "../YandexMetrika/YandexMetrika.jsx";
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
@@ -216,6 +217,7 @@ export default function App() {
           transform: "translateY(-50%)",
         }}
       />
+      <YandexMetrika />
     </main>
   );
 }
