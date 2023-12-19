@@ -9,7 +9,8 @@ const YandexMetrika = () => {
     ym(95920746, "init", {
          clickmap:true,
          trackLinks:true,
-         accurateTrackBounce:true
+         accurateTrackBounce:true,
+         webvisor:true
     });
   `;
 
