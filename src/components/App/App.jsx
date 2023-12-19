@@ -142,6 +142,15 @@ export default function App() {
 
   return (
     <main className={"main"}>
+      <YMInitializer
+        accounts={[95920746]}
+        options={{
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: true,
+        }}
+      />
       <Header
         handleTogglePopup={handleTogglePopup}
         loggedIn={loggedIn}
@@ -226,15 +235,6 @@ export default function App() {
         sx={{
           top: "10%",
           transform: "translateY(-50%)",
-        }}
-      />
-      <YMInitializer
-        accounts={[95920746]}
-        options={{
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true,
         }}
       />
     </main>
