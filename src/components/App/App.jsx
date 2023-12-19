@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import HousesPage from "../HousesPage/HousesPage.jsx";
 import HomePage from "../HomePage/HomePage.jsx";
 import ContactsPage from "../ContactsPage/ContactsPage.jsx";
@@ -19,7 +19,16 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.jsx";
 import NotFound from "../NotFound/NotFound.jsx";
 import Admin from "../Admin/Admin.jsx";
 import { Snackbar } from "@mui/material";
-import YandexMetrika from "../YandexMetrika/YandexMetrika.jsx";
+import { YMInitializer } from "react-yandex-metrika";
+import ym from "react-yandex-metrika";
+
+function usePageTracking() {
+  const location = useLocation();
+
+  useEffect(() => {
+    ym("hit", location.pathname);
+  }, [location]);
+}
 
 export default function App() {
   const [openPopup, setOpenPopup] = useState(false);
@@ -36,6 +45,8 @@ export default function App() {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
+  usePageTracking();
 
   function toggleBodyOverflow() {
     const body = document.body;
@@ -217,7 +228,15 @@ export default function App() {
           transform: "translateY(-50%)",
         }}
       />
-      <YandexMetrika />
+      <YMInitializer
+        accounts={[95920746]}
+        options={{
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: true,
+        }}
+      />
     </main>
   );
 }
