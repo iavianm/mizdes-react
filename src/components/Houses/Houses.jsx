@@ -11,7 +11,8 @@ const Houses = ({
   handleChangeVillas,
   images,
 }) => {
-  const { key, title, specs, description, tags, about, buttons, image } = house;
+  const { key, title, specs, price, description, tags, about, buttons, image } =
+    house;
 
   const handleButtonClick = () => {
     handleTogglePopup();
@@ -48,9 +49,9 @@ const Houses = ({
                 ))}
               </div>
             </div>
-
-            <p className="villa-description">{description}</p>
+            <div className={"villa-price-new-year"}>{price}</div>
           </div>
+          <p className="villa-description">{description}</p>
 
           <div className="villa-tags">
             {tags.map((tag, index) => (

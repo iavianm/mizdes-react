@@ -150,6 +150,7 @@ export default function App() {
           accurateTrackBounce: true,
           webvisor: true,
         }}
+        version="2"
       />
       <Header
         handleTogglePopup={handleTogglePopup}

@@ -94,6 +94,7 @@
   margin: 0;
   padding: 0 0 140px 0;
   font-size: var(--font-size-p);
+  hyphens: auto;
 }
 
 @media screen and (max-width: 1700px) {

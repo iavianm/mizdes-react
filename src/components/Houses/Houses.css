@@ -16,22 +16,24 @@
   font-size: var(--font-size-h2);
   margin: 0;
   padding: 0;
-  flex: 1;
+  /*flex: 1;*/
 }
 
 .villa-specs {
   display: flex;
   gap: 15px;
   font-size: 1rem;
-  flex: 1;
+  /*flex: 1;*/
+  text-align: right;
 }
 
 .villa-description {
   font-size: 1.1em;
   font-weight: bold;
-  margin: 0;
+  margin: 0 0 40px 0;
   padding: 0;
   line-height: 24px;
+  width: 80%;
 }
 
 .villa-tags span {
@@ -103,7 +105,8 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
+  justify-content: space-between;
 }
 
 .villa-description-container {
@@ -130,8 +133,8 @@
 }
 
 .villa-info-size {
-  width: 60%;
-  margin-bottom: 50px;
+  /*width: 60%;*/
+  margin-bottom: 10px;
 }
 
 .villa-description-about {
@@ -210,6 +213,12 @@
 .slick-prev {
   left: 10px !important;
   z-index: 999 !important;
+}
+
+.villa-price-new-year {
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-align: right;
 }
 
 @media screen and (max-width: 600px) {
@@ -295,6 +304,10 @@
     margin-bottom: 20px;
   }
 
+  .villa-price-new-year {
+    text-align: center;
+  }
+
   .villa-info-container {
     display: block;
     align-items: center;
@@ -375,6 +388,9 @@
 
 @media screen and (max-width: 400px) {
   .villa-specs {
+    font-size: 0.8rem;
+  }
+  .villa-price-new-year {
     font-size: 0.8rem;
   }
 }
