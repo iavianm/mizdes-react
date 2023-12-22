@@ -19,6 +19,8 @@ img {
 
 .title {
   font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
 }
 
 .details {
@@ -38,8 +40,19 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid black;
+  /*border-bottom: 2px solid black;*/
   gap: 10px;
+}
+
+.card-price-new-year {
+  padding: 0;
+  margin: 0 0 10px 0;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.about-container {
+  border-bottom: 2px solid black;
 }
 
 @media screen and (max-width: 1000px) {
@@ -56,10 +69,18 @@ img {
     font-size: 0.8rem;
     gap: 10px;
   }
+
+  .card-price-new-year {
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 780px) {
   .details {
+    font-size: 0.7rem;
+  }
+
+  .card-price-new-year {
     font-size: 0.7rem;
   }
 }
@@ -68,10 +89,18 @@ img {
   .details {
     font-size: 0.9rem;
   }
+
+  .card-price-new-year {
+    font-size: 0.9rem;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .details {
+    font-size: 0.6rem;
+  }
+
+  .card-price-new-year {
     font-size: 0.6rem;
   }
 }
