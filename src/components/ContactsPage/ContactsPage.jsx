@@ -10,7 +10,7 @@ const ContactsPage = () => {
   return (
     <main className="main">
       <Helmet>
-        <title>Контакты - Мы Здесь</title>
+        <title>Мы Здесь - Контакты</title>
         <meta
           name="description"
           content="Свяжитесь с нами для бронирования или получения дополнительной информации. Наш отель расположен в Курортном районе Ленинградской области."
