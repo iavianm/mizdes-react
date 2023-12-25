@@ -160,10 +160,6 @@ export default function App() {
       {isTokenChecked ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route
-            path="/spa"
-            element={<SpaPage handleTogglePopup={handleTogglePopup} />}
-          /> */}
           <Route
             path="/houses"
             element={

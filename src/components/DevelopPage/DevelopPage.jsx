@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Hero from "../Hero/Hero";
 import LeisureBlock from "../LeisureBlock/LeisureBlock";
 import "./DevelopPage.css";
@@ -29,6 +30,17 @@ export default function DevelopPage() {
 
   return (
     <>
+      <Helmet>
+        <title>Развитие и Услуги - Мы Здесь</title>
+        <meta
+          name="description"
+          content="Исследуйте наши роскошные услуги, включая рестораны и спа. Идеальное место для расслабления и наслаждения."
+        />
+        <meta
+          name="keywords"
+          content="Роскошный отель, Рестораны, Спа-услуги, Панорамные виллы у воды, Романтический уикенд в коттедже, Зимний отдых в коттедже, Летние коттеджи на берегу, Осенний уикенд в загородном доме, Весенний отдых вдали от города"
+        />
+      </Helmet>
       <section className="main">
         <Hero content={heroContent.developPage} />
         <DevelopContent content={developContent.restaurant} />

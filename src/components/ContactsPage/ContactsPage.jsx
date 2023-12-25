@@ -1,5 +1,6 @@
 import "./ContactsPage.css";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const ContactsPage = () => {
   useEffect(() => {
@@ -8,6 +9,17 @@ const ContactsPage = () => {
 
   return (
     <main className="main">
+      <Helmet>
+        <title>Контакты - Мы Здесь</title>
+        <meta
+          name="description"
+          content="Свяжитесь с нами для бронирования или получения дополнительной информации. Наш отель расположен в Курортном районе Ленинградской области."
+        />
+        <meta
+          name="keywords"
+          content="Контакты отеля, Курортный район, Связь с отелем, Свадьба в коттедже в лесу, Конференции на свежем воздухе, Корпоративные ретриты в природе, Роскошные виллы для отпуска, Праздник на свежем воздухе, Эксклюзивные коттеджи с видом, Отдых в лесу у Санкт-Петербурга, Дома для семейного уикенда"
+        />
+      </Helmet>
       <section className="contacts">
         <div className="contacts__container">
           <h2 className="contacts__title">Мы ЗДЕСЬ, в Курортном районе</h2>
