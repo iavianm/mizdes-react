@@ -31,7 +31,7 @@ export default function DevelopPage() {
   return (
     <>
       <Helmet>
-        <title>Развитие и Услуги - Мы Здесь</title>
+        <title>Мы Здесь - Развитие и Услуги</title>
         <meta
           name="description"
           content="Исследуйте наши роскошные услуги, включая рестораны и спа. Идеальное место для расслабления и наслаждения."

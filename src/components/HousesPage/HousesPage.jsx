@@ -31,7 +31,7 @@ const HousesPage = ({ handleTogglePopup, handleChangeVillas }) => {
   return (
     <section className={"main"}>
       <Helmet>
-        <title>Аренда Эксклюзивных Коттеджей - Мы Здесь</title>
+        <title>Мы Здесь - Аренда Эксклюзивных Коттеджей</title>
         <meta
           name="description"
           content="Исследуйте нашу эксклюзивную коллекцию коттеджей для идеального отдыха. От современных вилл до уютных домов в лесу."
