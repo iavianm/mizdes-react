@@ -40,12 +40,7 @@ const ContactsPage = () => {
           <iframe
             className="contacts__frame"
             src="https://yandex.ru/map-widget/v1/?um=constructor%3Adadf61b860d583f6293529f22ec1d8661c2270ae707a2bafebadf6f3b8d9b1ab&amp;source=constructor"
-            width="100%"
-            height="694"
-            frameBorder="0"
-          >
-            // width="100%" // height="400" allowFullScreen >
-          </iframe>
+          ></iframe>
         </div>
       </section>
     </main>
