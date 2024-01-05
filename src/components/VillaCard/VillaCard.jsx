@@ -29,7 +29,7 @@ const VillaCard = ({
               <span>Цена: {price}</span>
             </div>
           </div>
-          <div className={"card-price-new-year"}>{nyPrice}</div>
+          {/*<div className={"card-price-new-year"}>{nyPrice}</div>*/}
         </div>
         <p className="description">{description}</p>
       </div>

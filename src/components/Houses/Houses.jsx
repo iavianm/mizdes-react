@@ -49,7 +49,7 @@ const Houses = ({
                 ))}
               </div>
             </div>
-            <div className={"villa-price-new-year"}>{price}</div>
+            {/*<div className={"villa-price-new-year"}>{price}</div>*/}
           </div>
           <p className="villa-description">{description}</p>
 
